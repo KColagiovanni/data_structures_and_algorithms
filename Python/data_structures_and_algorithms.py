@@ -6,8 +6,14 @@ class Record:
     def insert(self, key, value):
         return
 
-    def delete(self):
-        return
+    def delete(self, key):
+        if key in self.record:
+            del self.record[key]
+            print(f'{key} was deleted successfully!')
+            return True
+        else:
+            print(f'Delete failed!! {key} does not exist!!')
+            return False
 
     def search(self):
         return
