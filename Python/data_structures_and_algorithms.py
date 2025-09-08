@@ -36,11 +36,10 @@ class Record:
             return False
 
     def clear_record(self):
-        if self.isEmpty:
+        if self.isEmpty():
             print('Record is already empty.')
         else:
-            for record_key in self.record.keys():
-                self.delete(record_key)
+            self.record.clear()
             print('Record has been fully deleted!')
 
     def traverse(self):
@@ -53,7 +52,8 @@ class Record:
             return True
 
     def size(self):
-        return len(self.record)
+        record_size = len(self.record)
+        return record_size
     
     def print_record(self):
         print(self.record)
