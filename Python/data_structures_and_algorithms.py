@@ -20,11 +20,18 @@ class Record:
             print(f'{key} has been found! The value is {self.record[key]}')
             return True
         else:
-            print(f'Search unsuccessful!! Key: {key} was not found!!')
+            print(f'{key} was not found, because it does not exist!!')
             return False
 
-    def update(self, key):
-        return
+    def update(self, key, new_value):
+        if key in self.record:
+            old_value = self.record[key]
+            self.record[key] = new_value
+            print(f'Update successful! The {key} value has changed from {old_value} to {self.record[key]}')
+            return True
+        else:
+            print(f'Update failed!! Key: {key} was not found!!')
+            return False
 
     def traverse(self):
         return
