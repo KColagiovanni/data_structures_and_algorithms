@@ -15,10 +15,15 @@ class Record:
             print(f'Delete failed!! {key} does not exist!!')
             return False
 
-    def search(self):
-        return
+    def search(self, key):
+        if key in self.record:
+            print(f'{key} has been found! The value is {self.record[key]}')
+            return True
+        else:
+            print(f'Search unsuccessful!! Key: {key} was not found!!')
+            return False
 
-    def update(self):
+    def update(self, key):
         return
 
     def traverse(self):
@@ -29,6 +34,9 @@ class Record:
 
     def size(self):
         return
+    
+    def print_record(self):
+        print(self.record)
 
 
 class Array:
