@@ -4,7 +4,9 @@ class Record:
         self.record = {}
 
     def insert(self, key, value):
-        return
+        self.record[key] = value
+        print(f'Record added successfully')
+        return True
 
     def delete(self, key):
         if key in self.record:
@@ -33,14 +35,25 @@ class Record:
             print(f'Update failed!! Key: {key} was not found!!')
             return False
 
+    def clear_record(self):
+        if self.isEmpty:
+            print('Record is already empty.')
+        else:
+            for record_key in self.record.keys():
+                self.delete(record_key)
+            print('Record has been fully deleted!')
+
     def traverse(self):
         return
 
     def isEmpty(self):
-        return
+        if self.size() > 0:
+            return False
+        else:
+            return True
 
     def size(self):
-        return
+        return len(self.record)
     
     def print_record(self):
         print(self.record)
