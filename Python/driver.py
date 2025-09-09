@@ -39,5 +39,7 @@ record.print_record()
 record.insert('name', "Kevin")
 record.insert('age', "41")
 record.insert('gender', "Male")
+record.insert('occupation', "SW Test Engineer")
 
 record.print_record()
+record.traverse()
