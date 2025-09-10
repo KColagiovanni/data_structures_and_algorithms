@@ -1,45 +1,44 @@
 from data_structures_and_algorithms import Record
 
-record = Record()
+def record_example_test():
+    record = Record()
 
-record.insert('name', "Kevin")
-record.insert('age', "41")
-record.insert('gender', "Male")
+    record.insert(1, {'name': 'Kevin', 'age': '41', 'gender': 'Male'})  # Pass - Record inserted successfully.
 
-record.print_record()
+    record.print_record()
 
-record.insert('name', "Kevin")
-record.insert('age', "41")
-record.insert('gender', "Male")
+    record.insert(1, {'name': 'Kevin', 'age': '41', 'gender': 'Male'})  # Fail - Record already exists.
 
-record.delete('age')
+    record.delete_record(1)  # Pass -Delete successful.
 
-record.print_record()
+    record.delete_record(1)  # Fail - Doesn't exist.
 
-record.insert('name', "Kevin")
-record.insert('age', "41")
-record.insert('gender', "Male")
+    record.print_record()
 
-record.print_record()
+    record.insert(1, {'name': 'Kevin', 'age': '41', 'gender': 'Male'})  # Pass - Record inserted successfully.
 
-record.search('gender')
+    record.print_record()
 
-record.update('age', '42')
+    record.search('gender')  # Pass - Record value found.
 
-record.print_record()
+    record.update('age', '42')  # Pass - Update successful.
 
-print(f'record_size is: {record.size()}')
+    record.print_record()
 
-record.clear_record()
+    print(f'record_size is: {record.size()}')  # Record size
 
-record.clear_record()
+    record.delete_all()  # Pass - Clear successful
 
-record.print_record()
+    record.delete_all()  # Fail - Record doesn't exist
 
-record.insert('name', "Kevin")
-record.insert('age', "41")
-record.insert('gender', "Male")
-record.insert('occupation', "SW Test Engineer")
+    record.print_record()
 
-record.print_record()
-record.traverse()
+    record.insert(1, {'name': 'Kevin', 'age': '41', 'gender': 'Male', 'occupation': 'SW Test Engineer'})
+    record.insert(2, {'name': 'Andrew', 'age': '4', 'gender': 'Male'})
+
+    record.print_record()
+
+    record.traverse()
+
+
+record_example_test()

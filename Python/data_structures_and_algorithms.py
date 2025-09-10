@@ -3,93 +3,112 @@ class Record:
     def __init__(self):
         self.record = {}
 
-    def insert(self, key, value):
+    def insert(self, record_id, value):
         """
         Insert a value into the record.
-        :param key: (str) The key for the new entry.
-        :param value: (str) The value for the new entry.
+        :param record_id: (int) The record_id for the new entry.
+        :param value: (dict) The value for the new entry.
         :return: (bool) True if the insertion was successful, else False.
         """
-        if key in self.record:
-            print(f'Insert failed!! {key} already exists!!')
+        if record_id in self.record:
+            print(f'Insert failed!! Record ID({record_id}) already exists!!')
             return False
         else:
-            self.record[key] = value
+            self.record[record_id] = value
             print(f'Record inserted successfully')
             return True
 
-    def delete(self, key):
+    def delete_record(self, record_id):
         """
-        Delete a value from the record.
-        :param key: (str) The key for the new entry.
+        Delete an entire record.
+        :param record_id: (str) The record_id for the new entry.
         :return: (bool) True if the deletion was successful, else False.
         """
-        if key in self.record:
-            del self.record[key]
-            print(f'{key} was deleted successfully!')
+        if record_id in self.record:
+            del self.record[record_id]
+            print(f'Record ID({record_id}) was deleted successfully!')
             return True
         else:
-            print(f'Delete failed!! {key} does not exist!!')
+            print(f'Delete failed!! Record ID ({record_id}) does not exist!!')
             return False
 
-    def search(self, key):
+    def delete_record_value(self, record_id, key):
+        """
+        Delete a key and value in the provided record.
+        :param record_id: (int) The record_id for the new entry.
+        :param key: (str) The key of the value to be deleted.
+        :return: (bool) True if the deletion was successful, else False.
+        """
+        if record_id in self.record:
+            if key in record_id:
+                del self.record[record_id][key]
+                print(f'Record ID({record_id}) was deleted successfully!')
+                return True
+            else:
+                print(f'Delete failed!! Record ID ({record_id}) key ({key}) does not exist!!')
+                return False
+        else:
+            print(f'Delete failed!! Record ID ({record_id}) does not exist!!')
+            return False
+
+    def search(self, record_id):
         """
         Search for a value in the record.
-        :param key: (str) The key for the new entry.
+        :param record_id: (str) The record_id for the new entry.
         :return: (bool) True if the search was successful, else False.
         """
-        if key in self.record:
-            print(f'{key} has been found! The value is {self.record[key]}')
+        if record_id in self.record:
+            print(f'{record_id} has been found! The value is {self.record[record_id]}')
             return True
         else:
-            print(f'{key} was not found, because it does not exist!!')
+            print(f'{record_id} was not found, because it does not exist!!')
             return False
 
-    def update(self, key, new_value):
+    def update(self, record_id, new_value):
         """
         Update a value in the record.
-        :param key: (str) The key for the new entry.
+        :param record_id: (str) The record_id for the new entry.
         :param new_value: (str) The new value for the updated record.
         :return: (bool) True if the update was successful, else False.
         """
-        if key in self.record:
-            old_value = self.record[key]
-            self.record[key] = new_value
-            print(f'Update successful! The {key} value has changed from {old_value} to {self.record[key]}')
+        if record_id in self.record:
+            old_value = self.record[record_id]
+            self.record[record_id] = new_value
+            print(f'Update successful! The {record_id} value has changed from {old_value} to {self.record[record_id]}')
             return True
         else:
-            print(f'Update failed!! Key: {key} was not found!!')
+            print(f'Update failed!! id: {record_id} was not found!!')
             return False
 
-    def clear_record(self):
+    def delete_all(self):
         """
-        Delete all data in the record.
-        :return: (bool) True if the clearing of the record was successful, else False.
+        Delete all records.
+        :return: (bool) True if the clearing of the records was successful, else False.
         """
-        if self.isEmpty():
-            print('Record is already empty.')
+        if self.is_empty():
+            print('There are no records to delete.')
             return False
         else:
             self.record.clear()
-            print('Record has been fully deleted!')
+            print('All records have been deleted!')
             return True
 
     def traverse(self):
         """
-        Traverse the record and print out each key and value, line by line.
+        Traverse the record and print out each record id and value, line by line.
         :return: (bool) False if the record is empty, else True.
         """
-        if self.isEmpty():
+        if self.is_empty():
             print('Record is empty.')
             return False
         else:
-            count = 1
-            for key, value in self.record.items():
-                print(f'Entry {count}) - {key}: {value}')
-                count += 1
+            for record_id, value in self.record.items():
+                print(f'Record ID: {record_id}')
+                for key, entry in value.items():
+                    print(f'  - {key}: {entry}')
             return False
 
-    def isEmpty(self):
+    def is_empty(self):
         """
         Check if the record is empty.
         :return: (bool) True if the record is empty, else False.
@@ -131,7 +150,7 @@ class Array:
     def traverse(self):
         return
 
-    def isEmpty(self):
+    def is_empty(self):
         return
 
     def size(self):
@@ -154,7 +173,7 @@ class LinkedList:
     def traverse(self):
         return
 
-    def isEmpty(self):
+    def is_empty(self):
         return
 
     def size(self):
@@ -178,7 +197,7 @@ class BinaryTree:
     def traverse(self):
         return
 
-    def isEmpty(self):
+    def is_empty(self):
         return
 
     def size(self):
@@ -202,7 +221,7 @@ class HashTable:
     def traverse(self):
         return
 
-    def isEmpty(self):
+    def is_empty(self):
         return
 
     def size(self):
@@ -226,7 +245,7 @@ class Heap:
     def traverse(self):
         return
 
-    def isEmpty(self):
+    def is_empty(self):
         return
 
     def size(self):
@@ -250,7 +269,7 @@ class Graph:
     def traverse(self):
         return
 
-    def isEmpty(self):
+    def is_empty(self):
         return
 
     def size(self):
