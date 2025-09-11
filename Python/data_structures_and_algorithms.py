@@ -3,7 +3,7 @@ class Record:
     def __init__(self):
         self.record = {}
 
-    def insert(self, record_id, value):
+    def insert_record(self, record_id, value):
         """
         Insert a value into the record.
         :param record_id: (int) The record_id for the new entry.
@@ -18,10 +18,26 @@ class Record:
             print(f'Record inserted successfully')
             return True
 
+    def insert_new_item(self, record_id, key, value):
+        """
+        Insert a new item into an existing record.
+        :param record_id: (int) The record_id for the new entry.
+        :param key: (str) The key of the value to be updated.
+        :param value: (str) The new value for the updated record.
+        :return: (bool) True if the update was successful, else False.
+        """
+        if record_id in self.record:
+            self.record[record_id][key] = value
+            print(f'Item insertion successful! [{key}: {value}] was added to Record ID({record_id})')
+            return True
+        else:
+            print(f'Item insertion failed!! Record ID({record_id}) was not found!!')
+            return False
+
     def delete_record(self, record_id):
         """
         Delete an entire record.
-        :param record_id: (str) The record_id for the new entry.
+        :param record_id: (int) The record_id for the new entry.
         :return: (bool) True if the deletion was successful, else False.
         """
         if record_id in self.record:
@@ -40,9 +56,10 @@ class Record:
         :return: (bool) True if the deletion was successful, else False.
         """
         if record_id in self.record:
-            if key in record_id:
+            if key in self.record[record_id]:
+                value_to_delete = self.record[record_id][key]
                 del self.record[record_id][key]
-                print(f'Record ID({record_id}) was deleted successfully!')
+                print(f'{key}: {value_to_delete} in Record ID({record_id}) was deleted successfully!')
                 return True
             else:
                 print(f'Delete failed!! Record ID ({record_id}) key ({key}) does not exist!!')
@@ -54,27 +71,28 @@ class Record:
     def search(self, record_id):
         """
         Search for a value in the record.
-        :param record_id: (str) The record_id for the new entry.
+        :param record_id: (int) The record_id for the new entry.
         :return: (bool) True if the search was successful, else False.
         """
         if record_id in self.record:
-            print(f'{record_id} has been found! The value is {self.record[record_id]}')
+            print(f'Record ID({record_id}) has been found! The value is {self.record[record_id]}')
             return True
         else:
             print(f'{record_id} was not found, because it does not exist!!')
             return False
 
-    def update(self, record_id, new_value):
+    def update(self, record_id, key, new_value):
         """
         Update a value in the record.
-        :param record_id: (str) The record_id for the new entry.
+        :param record_id: (int) The record_id for the new entry.
+        :param key: (str) The key of the value to be updated.
         :param new_value: (str) The new value for the updated record.
         :return: (bool) True if the update was successful, else False.
         """
         if record_id in self.record:
-            old_value = self.record[record_id]
-            self.record[record_id] = new_value
-            print(f'Update successful! The {record_id} value has changed from {old_value} to {self.record[record_id]}')
+            old_value = self.record[record_id][key]
+            self.record[record_id][key] = new_value
+            print(f'Update successful! The "{key}" value in Record ID({record_id}) has changed from {old_value} to {self.record[record_id][key]}')
             return True
         else:
             print(f'Update failed!! id: {record_id} was not found!!')
