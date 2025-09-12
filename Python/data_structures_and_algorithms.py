@@ -6,6 +6,9 @@ class Record:
     def insert_record(self, record_id, value):
         """
         Insert a value into the record.
+
+        Time Complexity: O(1)
+
         :param record_id: (int) The record_id for the new entry.
         :param value: (dict) The value for the new entry.
         :return: (bool) True if the insertion was successful, else False.
@@ -21,6 +24,9 @@ class Record:
     def insert_new_item(self, record_id, key, value):
         """
         Insert a new item into an existing record.
+
+        Time Complexity: O(1)
+
         :param record_id: (int) The record_id for the new entry.
         :param key: (str) The key of the value to be updated.
         :param value: (str) The new value for the updated record.
@@ -37,6 +43,9 @@ class Record:
     def delete_record(self, record_id):
         """
         Delete an entire record.
+
+        Time Complexity: O(1)
+
         :param record_id: (int) The record_id for the new entry.
         :return: (bool) True if the deletion was successful, else False.
         """
@@ -51,6 +60,9 @@ class Record:
     def delete_record_value(self, record_id, key):
         """
         Delete a key and value in the provided record.
+
+        Time Complexity: O(1)
+
         :param record_id: (int) The record_id for the new entry.
         :param key: (str) The key of the value to be deleted.
         :return: (bool) True if the deletion was successful, else False.
@@ -71,6 +83,9 @@ class Record:
     def search(self, record_id):
         """
         Search for a value in the record.
+
+        Time Complexity: O(1)
+
         :param record_id: (int) The record_id for the new entry.
         :return: (bool) True if the search was successful, else False.
         """
@@ -84,6 +99,9 @@ class Record:
     def update(self, record_id, key, new_value):
         """
         Update a value in the record.
+
+        Time Complexity: O(1)
+
         :param record_id: (int) The record_id for the new entry.
         :param key: (str) The key of the value to be updated.
         :param new_value: (str) The new value for the updated record.
@@ -101,6 +119,9 @@ class Record:
     def delete_all(self):
         """
         Delete all records.
+
+        Time Complexity: O(1)
+
         :return: (bool) True if the clearing of the records was successful, else False.
         """
         if self.is_empty():
@@ -114,6 +135,9 @@ class Record:
     def traverse(self):
         """
         Traverse the record and print out each record id and value, line by line.
+
+        Time Complexity: O(n)
+
         :return: (bool) False if the record is empty, else True.
         """
         if self.is_empty():
@@ -129,6 +153,9 @@ class Record:
     def is_empty(self):
         """
         Check if the record is empty.
+
+        Time Complexity: O(n)
+
         :return: (bool) True if the record is empty, else False.
         """
         if self.size() > 0:
@@ -139,6 +166,9 @@ class Record:
     def size(self):
         """
         Return the size of the record.
+
+        Time Complexity: O(n)
+
         :return: (int) The size of the record.
         """
         return len(self.record)
@@ -146,6 +176,9 @@ class Record:
     def print_record(self):
         """
         Print the record to the console.
+
+        Time Complexity: O(n)
+
         :return: None.
         """
         print(self.record)
@@ -153,25 +186,69 @@ class Record:
 
 class Array:
 
-    def insert(self):
+
+    def __init__(self):
+        self.capacity = 2  # The capacity of the array.
+        self.size = 0  # The current size of the array.
+        self.data = [None] * self.capacity
+
+    def _resize(self, new_capacity):
+        """
+        Resize the underlying storage array.
+        :param new_capacity: (int) The new capacity of the array.
+        :return: None.
+        """
+        new_data = [None] * new_capacity
+        for i in range(self.size):
+            new_data[i] = self.data[i]
+        self.data = new_data
+        self.capacity = new_capacity
+
+    def insert(self, index, item):
+        """
+        Inserts the specified item at the specified index.
+        :param index: (str) The index of the array where the item will be inserted.
+        :param item: (any) The item that will be inserted to the list.
+        :return: None.
+        """
         return
 
-    def delete(self):
+    def append(self, item):
+        """
+        Adds the specified item to the end of the array.
+        :param item: (any) The item to be appended to the list.
+        :return: None.
+        """
         return
 
-    def search(self):
+    def clear(self):
+        """
+        Clears all the items from the array.
+        :return: None.
+        """
         return
 
-    def update(self):
+    def search(self, item):
+        """
+        Preform a binary search for the specified item.
+        :param item: (any) The item to be searched for.
+        :return index: (int) The index of specified item, if the item is not found, -1 will be returned.
+        """
         return
 
-    def traverse(self):
-        return
-
-    def is_empty(self):
+    def pop(self, index=-1):
+        """
+        Removes the item at the specified index, if an index is not given, the last item will be removed.
+        :param index:
+        :return: None.
+        """
         return
 
     def size(self):
+        """
+        Returns the number of items in the array.
+        :return size: (int) The number of items in the array.
+        """
         return
 
 class LinkedList:
