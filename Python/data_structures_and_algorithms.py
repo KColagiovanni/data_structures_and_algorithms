@@ -253,7 +253,20 @@ class Array:
         :param index:
         :return: None.
         """
-        return
+        if index < 0 or index >= self.size:
+            print("Delete failed: Invalid index.")
+            return False
+
+        for i in range(index, self.size - 1):
+            self.data[i] = self.data[i + 1]
+
+        self.data[self.size - 1] = None
+        self.size -= 1
+
+        if 0 < self.size < self.capacity // 4:
+            self._resize(self.capacity // 2)
+
+        return True
 
     def length(self):
         """

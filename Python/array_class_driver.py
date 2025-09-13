@@ -18,5 +18,12 @@ def array_example_test():
 
     array.traverse()
 
+    array.pop(1)
+
+    array.traverse()
+
+    array.insert(1, 'second')
+
+    array.traverse()
 
 array_example_test()
