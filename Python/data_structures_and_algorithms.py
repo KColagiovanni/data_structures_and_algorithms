@@ -253,12 +253,20 @@ class Array:
         :param index:
         :return: None.
         """
-        if index < 0 or index >= self.size:
-            print("Delete failed: Invalid index.")
+
+        # If index is less than -1 or higher than the size of the array, return false.
+        if index < -1 or index >= self.size:
+            print("Pop failed: Invalid index.")
             return False
 
-        for i in range(index, self.size - 1):
-            self.data[i] = self.data[i + 1]
+        # If index is -1, remove the last item.
+        elif index == -1:
+            self.data[-2] = self.data[-1]
+
+        # Remove the item at the specified index.
+        else:
+            for i in range(index, self.size - 1):
+                self.data[i] = self.data[i + 1]
 
         self.data[self.size - 1] = None
         self.size -= 1

@@ -26,4 +26,13 @@ def array_example_test():
 
     array.traverse()
 
+    array.pop()
+
+    array.traverse()
+
+    array.insert(2, 'third')
+
+    array.traverse()
+
+
 array_example_test()
