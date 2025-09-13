@@ -186,7 +186,6 @@ class Record:
 
 class Array:
 
-
     def __init__(self):
         self.capacity = 2  # The capacity of the array.
         self.size = 0  # The current size of the array.
@@ -211,7 +210,19 @@ class Array:
         :param item: (any) The item that will be inserted to the list.
         :return: None.
         """
-        return
+        if index < 0 or index > self.size:
+            print("Insert failed: Invalid index.")
+            return False
+
+        if self.size == self.capacity:
+            self._resize(self.capacity * 2)
+
+        for i in range(self.size, index, -1):
+            self.data[i] = self.data[i - 1]
+
+        self.data[index] = item
+        self.size += 1
+        return True
 
     def append(self, item):
         """
@@ -244,12 +255,28 @@ class Array:
         """
         return
 
-    def size(self):
+    def length(self):
         """
         Returns the number of items in the array.
         :return size: (int) The number of items in the array.
         """
         return
+
+    def print_array(self):
+        """
+        Prints out the content of the array in a less pretty way than the traverse method.
+        :return: None.
+        """
+        print(self.data)
+
+    def traverse(self):
+        """
+        Prints out the content of the array.
+        :return: None.
+        """
+        for i in range(self.size):
+            print(self.data[i], end=", ")
+        print()
 
 class LinkedList:
 
