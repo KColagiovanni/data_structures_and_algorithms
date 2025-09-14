@@ -52,5 +52,12 @@ def array_example_test():
 
     array.traverse()
 
+    array.pop(-1)
+
+    array.traverse()
+
+    array.append('appended value')
+
+    array.traverse()
 
 array_example_test()

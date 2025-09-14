@@ -211,26 +211,32 @@ class Array:
         :return: None.
         """
 
-        # If index is less than -1.
+        # If index is less than -1 return false.
         if index < -1:
             print("\nInsert failed: Invalid index.")
             return False
 
+        # If the array size is equal to the capacity, increase the array capacity.
         if self.size == self.capacity:
             self._resize(self.capacity * 2)
 
+        # If index provided is -1 or larger than the size of the index, insert the item at the end of the array.
         if index == -1 or index > self.size:
-            # print(self.data)
             self.data[self.size] = item
             self.size += 1
             print(f'\nSuccessfully inserted "{item}" at the end of the array.')
 
         else:
+            # Make room for the newly inserted item by shifting all the items down one after the inserted item.
             for i in range(self.size, index, -1):
                 self.data[i] = self.data[i - 1]
 
+            # Insert the item.
             self.data[index] = item
+
+            # Insert the size by 1.
             self.size += 1
+
             print(f'\nSuccessfully inserted "{item}" at index {index}.')
 
         return True
@@ -244,8 +250,9 @@ class Array:
         if self.size == self.capacity:
             self._resize(self.capacity * 2)
 
-        self.data[-1] = item
+        self.data[self.size] = item
         self.size += 1
+        print(f'\nSuccessfully appended {item} to the end of the array.')
         return True
 
     def pop(self, index=-1):
@@ -255,12 +262,12 @@ class Array:
         :return: None.
         """
 
-        # If index is less than -1 or higher than the size of the array, return false.
+        # If index is less than -1 return false.
         if index < -1:
             print("\nPop failed: Invalid index.")
             return False
 
-        # If index is -1, remove the last item.
+        # If index is -1 or larger than the size of the array, remove the last item.
         elif index == -1 or index >= self.size:
             self.data[-2] = self.data[-1]
             print(f'\nSuccessfully removed the last item from the array.')
