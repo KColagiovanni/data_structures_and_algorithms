@@ -6,17 +6,27 @@ def array_example_test():
 
     array.traverse()
 
-    array.insert(0, 'first')
+    array.insert(0, 'first')  # First item inserted
 
     array.traverse()
 
-    array.insert(1, 'second')
+    array.insert(1, 'second')  # Second item inserted
 
     array.traverse()
 
-    array.insert(2, 'third')
+    array.insert(2, 'third')  # Third item inserted
 
     array.traverse()
+
+    array.insert(5, 'fourth')  # Invalid index
+
+    array.traverse()
+
+    array.insert(-1, 'fourth')  # Invalid index
+
+    array.traverse()
+
+    array.length()
 
     array.pop(1)
 
@@ -30,7 +40,15 @@ def array_example_test():
 
     array.traverse()
 
-    array.insert(2, 'third')
+    array.insert(3, 'fourth')
+
+    array.traverse()
+
+    array.insert(-1, 'end')
+
+    array.traverse()
+
+    array.pop(20)
 
     array.traverse()
 

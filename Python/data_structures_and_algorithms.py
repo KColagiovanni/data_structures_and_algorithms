@@ -206,22 +206,33 @@ class Array:
     def insert(self, index, item):
         """
         Inserts the specified item at the specified index.
-        :param index: (str) The index of the array where the item will be inserted.
+        :param index: (int) The index of the array where the item will be inserted.
         :param item: (any) The item that will be inserted to the list.
         :return: None.
         """
-        if index < 0 or index > self.size:
-            print("Insert failed: Invalid index.")
+
+        # If index is less than -1.
+        if index < -1:
+            print("\nInsert failed: Invalid index.")
             return False
 
         if self.size == self.capacity:
             self._resize(self.capacity * 2)
 
-        for i in range(self.size, index, -1):
-            self.data[i] = self.data[i - 1]
+        if index == -1 or index > self.size:
+            # print(self.data)
+            self.data[self.size] = item
+            self.size += 1
+            print(f'\nSuccessfully inserted "{item}" at the end of the array.')
 
-        self.data[index] = item
-        self.size += 1
+        else:
+            for i in range(self.size, index, -1):
+                self.data[i] = self.data[i - 1]
+
+            self.data[index] = item
+            self.size += 1
+            print(f'\nSuccessfully inserted "{item}" at index {index}.')
+
         return True
 
     def append(self, item):
@@ -230,7 +241,47 @@ class Array:
         :param item: (any) The item to be appended to the list.
         :return: None.
         """
-        return
+        if self.size == self.capacity:
+            self._resize(self.capacity * 2)
+
+        self.data[-1] = item
+        self.size += 1
+        return True
+
+    def pop(self, index=-1):
+        """
+        Removes the item at the specified index, if an index is not given, the last item will be removed.
+        :param index:
+        :return: None.
+        """
+
+        # If index is less than -1 or higher than the size of the array, return false.
+        if index < -1:
+            print("\nPop failed: Invalid index.")
+            return False
+
+        # If index is -1, remove the last item.
+        elif index == -1 or index >= self.size:
+            self.data[-2] = self.data[-1]
+            print(f'\nSuccessfully removed the last item from the array.')
+
+        # Remove the item at the specified index and move all the item after it down.
+        else:
+            for i in range(index, self.size - 1):
+                self.data[i] = self.data[i + 1]
+            print(f'\nSuccessfully removed the item at index {index}.')
+
+        # Set the end of the array to None
+        self.data[self.size - 1] = None
+
+        # Reduce the size of the array by 1.
+        self.size -= 1
+
+        # If the array size is greater than 0 and less than array capacity divided by 4, then resize the array by half.
+        if 0 < self.size < self.capacity // 4:
+            self._resize(self.capacity // 2)
+
+        return True
 
     def clear(self):
         """
@@ -247,40 +298,12 @@ class Array:
         """
         return
 
-    def pop(self, index=-1):
-        """
-        Removes the item at the specified index, if an index is not given, the last item will be removed.
-        :param index:
-        :return: None.
-        """
-
-        # If index is less than -1 or higher than the size of the array, return false.
-        if index < -1 or index >= self.size:
-            print("Pop failed: Invalid index.")
-            return False
-
-        # If index is -1, remove the last item.
-        elif index == -1:
-            self.data[-2] = self.data[-1]
-
-        # Remove the item at the specified index.
-        else:
-            for i in range(index, self.size - 1):
-                self.data[i] = self.data[i + 1]
-
-        self.data[self.size - 1] = None
-        self.size -= 1
-
-        if 0 < self.size < self.capacity // 4:
-            self._resize(self.capacity // 2)
-
-        return True
-
     def length(self):
         """
         Returns the number of items in the array.
-        :return size: (int) The number of items in the array.
+        :return: The number of items in the array.
         """
+        print(self.size)
         return
 
     def print_array(self):
