@@ -26,7 +26,7 @@ def array_example_test():
 
     array.traverse()
 
-    array.length()
+    print(f'array size: {array.length()}')
 
     array.pop(1)
 
@@ -59,5 +59,17 @@ def array_example_test():
     array.append('appended value')
 
     array.traverse()
+
+    array.search("third")
+
+    array.clear()
+
+    array.traverse()
+
+    array.append('appended value')
+
+    array.traverse()
+
+    array.search("unknown item")
 
 array_example_test()

@@ -208,7 +208,7 @@ class Array:
         Inserts the specified item at the specified index.
         :param index: (int) The index of the array where the item will be inserted.
         :param item: (any) The item that will be inserted to the list.
-        :return: None.
+        :return: (bool) True if the insert was successful, else False.
         """
 
         # If index is less than -1 return false.
@@ -244,22 +244,29 @@ class Array:
     def append(self, item):
         """
         Adds the specified item to the end of the array.
-        :param item: (any) The item to be appended to the list.
-        :return: None.
+        :param item: (any) The item to be appended to the end of the list.
+        :return: (bool) True if the append was successful, else False.
         """
+
+        # Increase the size of the array.
         if self.size == self.capacity:
             self._resize(self.capacity * 2)
 
+        # Insert the item at the end of the array.
         self.data[self.size] = item
+
+        # Increase the array size by one.
         self.size += 1
+
         print(f'\nSuccessfully appended {item} to the end of the array.')
+
         return True
 
     def pop(self, index=-1):
         """
         Removes the item at the specified index, if an index is not given, the last item will be removed.
-        :param index:
-        :return: None.
+        :param index: (int) The index of the array where the item will be inserted.
+        :return: (bool) True if the pop was successful, else False.
         """
 
         # If index is less than -1 return false.
@@ -295,23 +302,16 @@ class Array:
         Clears all the items from the array.
         :return: None.
         """
-        return
-
-    def search(self, item):
-        """
-        Preform a binary search for the specified item.
-        :param item: (any) The item to be searched for.
-        :return index: (int) The index of specified item, if the item is not found, -1 will be returned.
-        """
-        return
+        while self.size > 0:
+            self.pop(0)
+        print('\nThe array has been cleared!!')
 
     def length(self):
         """
         Returns the number of items in the array.
         :return: The number of items in the array.
         """
-        print(self.size)
-        return
+        return self.size
 
     def print_array(self):
         """
@@ -328,6 +328,23 @@ class Array:
         for i in range(self.size):
             print(self.data[i], end=", ")
         print()
+
+    def search(self, item):
+        """
+        Preform a linear search for the specified item.
+        :param item: (any) The item to be searched for.
+        :return index: (int) The index of specified item, if the item is not found, -1 will be returned.
+        """
+        index = 0
+        for element in self.data:
+            if element == item:
+                print(f'\n"{element}" has been found at index {index}')
+                return index
+            else:
+                index += 1
+
+        print(f'\n{item} was not found in the array.')
+        return -1
 
 class LinkedList:
 
