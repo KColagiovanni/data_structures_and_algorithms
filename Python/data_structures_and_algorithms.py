@@ -346,28 +346,73 @@ class Array:
         print(f'\n{item} was not found in the array.')
         return -1
 
+class Node:
+    """ Class for the linked list """
+    def __init__(self, data):
+        self.data = data
+        self.next = None   # pointer to the next node
+
 class LinkedList:
 
-    def insert(self):
-        return
+    def __init__(self):
+        self.head = None   # First node (head of the list)
 
-    def delete(self):
-        return
+    def insert(self, data):
+        """Insert new node at the end."""
+        new_node = Node(data)
+        if not self.head:  # if list is empty
+            self.head = new_node
+            return
+        current = self.head
+        while current.next:  # traverse to the end
+            current = current.next
+        current.next = new_node
+
+    def delete(self, key):
+        """Delete the first occurrence of key."""
+        current = self.head
+
+        if current and current.data == key:  # if head needs to be removed
+            self.head = current.next
+            return
+
+        prev = None
+        while current and current.data != key:
+            prev = current
+            current = current.next
+
+        if current:  # key found
+            prev.next = current.next
 
     def search(self):
-        return
-
-    def update(self):
-        return
+        """Print all elements."""
+        current = self.head
+        while current:
+            print(current.data, end=" -> ")
+            current = current.next
+        print("None")
 
     def traverse(self):
-        return
+        """Print all elements."""
+        current = self.head
+        while current:
+            print(current.data, end=" -> ")
+            current = current.next
+        print("None")
 
     def is_empty(self):
-        return
+        if self.size() == 0:
+            return True
+        else:
+            return False
 
     def size(self):
-        return
+        count = 0
+        current = self.head
+        while current:
+            count += 1
+            current = current.next
+        return count
 
 
 class BinaryTree:
