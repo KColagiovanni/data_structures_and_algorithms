@@ -347,7 +347,7 @@ class Array:
         return -1
 
 class Node:
-    """ Class for the linked list """
+    """ Class to keep track of the node for the LinkedList class """
     def __init__(self, data):
         self.data = data
         self.next = None   # pointer to the next node
@@ -358,7 +358,9 @@ class LinkedList:
         self.head = None   # First node (head of the list)
 
     def insert(self, data):
-        """Insert new node at the end."""
+        """
+        Insert new node at the end.
+        """
         new_node = Node(data)
         if not self.head:  # if list is empty
             self.head = new_node
@@ -367,9 +369,12 @@ class LinkedList:
         while current.next:  # traverse to the end
             current = current.next
         current.next = new_node
+        print(f'{data} has been successfully inserted to the end of the linked list.')
 
     def delete(self, key):
-        """Delete the first occurrence of key."""
+        """
+        Delete the first occurrence of key.
+        """
         current = self.head
 
         if current and current.data == key:  # if head needs to be removed
@@ -383,17 +388,27 @@ class LinkedList:
 
         if current:  # key found
             prev.next = current.next
+            print(f'Success! {key} has been found!')
+        else:
+            print(f'Delete failed!! {key} could not be found!')
 
-    def search(self):
-        """Print all elements."""
+    def search(self, key):
+        """
+        Return True if key is in the list, else False.
+        """
         current = self.head
         while current:
-            print(current.data, end=" -> ")
+            if current.data == key:
+                print(f'Success!! {key} has been found.')
+                return True
             current = current.next
-        print("None")
+        print(f'Uh oh. {key} could not be found.')
+        return False
 
     def traverse(self):
-        """Print all elements."""
+        """
+        Print all elements.
+        """
         current = self.head
         while current:
             print(current.data, end=" -> ")
@@ -402,8 +417,10 @@ class LinkedList:
 
     def is_empty(self):
         if self.size() == 0:
+            print('The linked list is empty.')
             return True
         else:
+            print('The linked list is not empty.')
             return False
 
     def size(self):
