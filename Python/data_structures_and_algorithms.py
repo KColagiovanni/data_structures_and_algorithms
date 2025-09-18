@@ -346,76 +346,95 @@ class Array:
         print(f'\n{item} was not found in the array.')
         return -1
 
-class Node:
-    """ Class to keep track of the node for the LinkedList class """
+class LinkedListNode:
+    """
+    Class to keep track of the node for the LinkedList class
+    """
     def __init__(self, data):
         self.data = data
-        self.next = None   # pointer to the next node
+        self.next = None   # Pointer to the next node.
 
 class LinkedList:
 
     def __init__(self):
-        self.head = None   # First node (head of the list)
+        self.head = None   # First node (head of the list).
 
     def insert(self, data):
         """
-        Insert new node at the end.
+        Insert a new node at the end of the linked list.
+        :param data:
+        :return:
         """
-        new_node = Node(data)
-        if not self.head:  # if list is empty
-            self.head = new_node
-            return
+        new_node = LinkedListNode(data)
+        if not self.head:  # If list is empty (self.head == None as defined in the __init__ function).
+            self.head = new_node  # Add a new node as the head of the linked list.
+            return  # Item has been inserted to the list, so we're done here.
         current = self.head
-        while current.next:  # traverse to the end
+        while current.next:  # Traverse to the end if the linked list.
             current = current.next
-        current.next = new_node
+        current.next = new_node  # Assign the new node(data) to the end of the list.
         print(f'{data} has been successfully inserted to the end of the linked list.')
 
     def delete(self, key):
         """
-        Delete the first occurrence of key.
+        Find the first occurrence of the keyword, or item, passed into the function by doingf a linear search and delete
+        it. If the item is not found, nothing will be deleted.
+        :param key: (any) The keyword or item to be deleted.
+        :return: None.
         """
-        current = self.head
+        current = self.head  # Make the head of the list the current node.
 
-        if current and current.data == key:  # if head needs to be removed
-            self.head = current.next
+        if current and current.data == key:  # If head needs to be removed/deleted.
+            self.head = current.next  # Make the head the next node.
             return
 
         prev = None
-        while current and current.data != key:
-            prev = current
-            current = current.next
 
-        if current:  # key found
-            prev.next = current.next
+        while current and current.data != key:  # Traverse the linked list while current is not None and the current
+            # node does not equal the key.
+            prev = current  # Make the current node the previous node.
+            current = current.next  # Make the next node the current node.
+
+        if current:  # The key has been found.
+            prev.next = current.next  # Make the previous value point to the current keys next value. The previous node
+            # now points to the node after the current node, unlinking the current node(which is equal to the key).
             print(f'Success! {key} has been found!')
-        else:
+        else:  # The key has not been found.
             print(f'Delete failed!! {key} could not be found!')
 
     def search(self, key):
         """
-        Return True if key is in the list, else False.
+        Perform a linear search on the linked list, and return True if key is in the list, else False.
+        :param key: (any) The keyword or item to be searched for.
+        :return: (bool) True if key has been found in the list, else False.
         """
-        current = self.head
-        while current:
-            if current.data == key:
+        current = self.head  # Make the head of the list the current node.
+
+        while current:  # Traverse the linked list while the current node is not none.
+            if current.data == key:  # if the current node value is equal to the key, the key has been found.
                 print(f'Success!! {key} has been found.')
                 return True
-            current = current.next
+            current = current.next  # Continue to the next node.
         print(f'Uh oh. {key} could not be found.')
         return False
 
     def traverse(self):
         """
-        Print all elements.
+        Print all elements to the console.
+        :return: None.
         """
-        current = self.head
-        while current:
+        current = self.head  # Make the head of the list the current node.
+
+        while current:  # Traverse the linked list while the current node is not None.
             print(current.data, end=" -> ")
-            current = current.next
+            current = current.next  # Continue to the next node.
         print("None")
 
     def is_empty(self):
+        """
+        Check to see if the list is empty (size=0) and return True if the linked list is empty, else False.
+        :return: (bool) True if the linked list is empty, else False.
+        """
         if self.size() == 0:
             print('The linked list is empty.')
             return True
@@ -424,13 +443,25 @@ class LinkedList:
             return False
 
     def size(self):
+        """
+        Return the number of elements in the linked list.
+        :return count: (int) The number of elements in the linked list.
+        """
         count = 0
-        current = self.head
-        while current:
+        current = self.head  # Make the head of the list the current node.
+
+        while current:  # Traverse the list and
             count += 1
             current = current.next
         return count
 
+
+class BinaryTreeNode:
+
+    def __init__(self, data):
+        self.data = data
+        self.left = None
+        self.right = None
 
 class BinaryTree:
 
