@@ -351,8 +351,8 @@ class LinkedListNode:
     Class to keep track of the node for the LinkedList class
     """
     def __init__(self, data):
-        self.data = data
-        self.next = None   # Pointer to the next node.
+        self.data = data  # The data to be passed to the method in the LinkedList class.
+        self.next = None  # Pointer to the next node.
 
 class LinkedList:
 
@@ -362,8 +362,8 @@ class LinkedList:
     def insert(self, data):
         """
         Insert a new node at the end of the linked list.
-        :param data:
-        :return:
+        :param data: (any) The keyword or item to be inserted.
+        :return: None.
         """
         new_node = LinkedListNode(data)
         if not self.head:  # If list is empty (self.head == None as defined in the __init__ function).
@@ -459,32 +459,153 @@ class LinkedList:
 class BinaryTreeNode:
 
     def __init__(self, data):
-        self.data = data
+        self.data = data  # The data to be passed to the method in the LinkedList class.
         self.left = None
         self.right = None
 
 class BinaryTree:
+    """
+    A binary tree is a tree of data. The tree root is the median value of all the values in the tree. Items that are
+    less than the root are assigned to the left of the tree and items that are greater than the root are assigned to the
+    right side of the tree. The tree is adjusted as needed when new data is inserted.
+    """
+    def __init__(self):
+        self.root = None # Start with empty tree
 
-    def insert(self):
-        return
+    # ---------------- INSERT ----------------
+    def insert(self, data):
+        """
+        Insert data into the tree.
+        :param data: (any) The keyword or item to be inserted.
+        :return: None
+        """
+        if self.root is None:  # The tree is empty
+            self.root = BinaryTreeNode(data)  # Insert the item to the tree root.
+        else:
+            self._insert(self.root, data)  # Call the helper function to insert the data to the appropriate tree node.
 
-    def delete(self):
-        return
+    def _insert(self, current, data):
+        """
+        Helper method for the insert() method.
+        :param current: (any) The tree node to insert/check the data.
+        :param data: (any) The keyword or item to be inserted.
+        :return: None.
+        """
+        if data < current.data:  # If the data to be inserted is less than the tree root.
+            if current.left is None:  # If the left tree node is empty(None).
+                current.left = BinaryTreeNode(data)  # Insert the data to the left tree node.
+            else:  # Else the left node is not empty
+                self._insert(current.left, data)  # Call this method recursively, and pass the left node to it as the
+                # root.
+        else:  # Else the data to be inserted is greater than the tree root.
+            if current.right is None:  # If the right tree node is empty(None).
+                current.right = BinaryTreeNode(data)  # Insert the data to the right tree node.
+            else:  # Else the right node is not empty
+                self._insert(current.right, data)  # Call this method recursively, and pass the right node to it as the
+                # root.
 
-    def search(self):
-        return
+    # ---------------- SEARCH ----------------
+    def search(self, data):
+        return self._search(self.root, data)
 
-    def update(self):
-        return
+    def _search(self, current, data):
+        if current is None:
+            return False
+        if current.data == data:
+            return True
+        elif data < current.data:
+            return self._search(current.left, data)
+        else:
+            return self._search(current.right, data)
 
-    def traverse(self):
-        return
+    # ---------------- DELETE ----------------
+    def delete(self, data):
+        self.root = self._delete(self.root, data)
 
-    def is_empty(self):
-        return
+    def _delete(self, current, data):
+        if current is None:
+            return current
 
-    def size(self):
-        return
+        if data < current.data:
+            current.left = self._delete(current.left, data)
+        elif data > current.data:
+            current.right = self._delete(current.right, data)
+        else:
+            # Node found
+            if current.left is None and current.right is None:
+                return None
+            if current.left is None:
+                return current.right
+            elif current.right is None:
+                return current.left
+            successor = self._min_value_node(current.right)
+            current.data = successor.data
+            current.right = self._delete(current.right, successor.data)
+
+        return current
+
+    @staticmethod
+    def _min_value_node(node):
+        current = node
+        while current.left is not None:
+            current = current.left
+        return current
+
+    # ---------------- TRAVERSALS ----------------
+    def inorder(self):
+        result = []
+        self._inorder(self.root, result)
+        return result
+
+    def _inorder(self, node, result):
+        if node:
+            self._inorder(node.left, result)
+            result.append(node.data)
+            self._inorder(node.right, result)
+
+    def preorder(self):
+        result = []
+        self._preorder(self.root, result)
+        return result
+
+    def _preorder(self, node, result):
+        if node:
+            result.append(node.data)
+            self._preorder(node.left, result)
+            self._preorder(node.right, result)
+
+    def postorder(self):
+        result = []
+        self._postorder(self.root, result)
+        return result
+
+    def _postorder(self, node, result):
+        if node:
+            self._postorder(node.left, result)
+            self._postorder(node.right, result)
+            result.append(node.data)
+
+    # ---------------- HEIGHT ----------------
+    def height(self):
+        """Return the height (max depth) of the tree."""
+        return self._height(self.root)
+
+    def _height(self, node):
+        if node is None:
+            return -1  # define empty tree height as -1
+        left_h = self._height(node.left)
+        right_h = self._height(node.right)
+        return 1 + max(left_h, right_h)
+
+    # ---------------- COUNT NODES ----------------
+    def count_nodes(self):
+        """Return the total number of nodes in the tree."""
+        return self._count_nodes(self.root)
+
+    def _count_nodes(self, node):
+        if node is None:
+            return 0
+        return 1 + self._count_nodes(node.left) + self._count_nodes(node.right)
 
 
 class HashTable:
