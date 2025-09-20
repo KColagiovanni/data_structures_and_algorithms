@@ -506,17 +506,31 @@ class BinaryTree:
 
     # ---------------- SEARCH ----------------
     def search(self, data):
-        return self._search(self.root, data)
+        """
+        Search for specific data in the tree.
+        :param data: (any) The keyword or item to be inserted.
+        :return: None
+        """
+        return self._search(self.root, data)  # Call the helper method, passing the root node and the data to search.
 
     def _search(self, current, data):
-        if current is None:
+        """
+        Helper method for the search() method.
+        :param current: (any) The tree node to insert/check the data.
+        :param data: (any) The keyword or item to be inserted.
+        :return: None.
+        """
+        if current is None:  # There is no data in the root node and therefore no data in the binary tree.
             return False
-        if current.data == data:
+        if current.data == data:  # The data has been found.
+            print(f'Success!! {data} has been found in the binary tree.')
             return True
-        elif data < current.data:
-            return self._search(current.left, data)
-        else:
-            return self._search(current.right, data)
+        elif data < current.data:  # If the item to be searched for is less than the current leaf.
+            return self._search(current.left, data)  # Recursively call the helper method again passing the left node as
+                                                     # current.
+        else:  # Else the item to be searched for is greater than the current leaf.
+            return self._search(current.right, data)  # Recursively call the helper method again passing the left node as
+                                                      # current.
 
     # ---------------- DELETE ----------------
     def delete(self, data):
