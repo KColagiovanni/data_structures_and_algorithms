@@ -4,6 +4,8 @@ def binary_tree_example_test():
 
     bt = BinaryTree()
 
+    bt.delete(2)
+
     bt.insert(50)
     bt.insert(30)
     bt.insert(70)
@@ -16,6 +18,7 @@ def binary_tree_example_test():
     print("Height:", bt.height())            # 2 (levels: 50 -> 30 -> 20)
     print("Node count:", bt.count_nodes())   # 7
 
+    bt.delete(2)
     bt.delete(30)
     print("Inorder after delete:", bt.inorder())   # [20, 40, 50, 60, 70, 80]
     print("Node count after delete:", bt.count_nodes())  # 6

@@ -481,6 +481,7 @@ class BinaryTree:
         """
         if self.root is None:  # The tree is empty
             self.root = BinaryTreeNode(data)  # Insert the item to the tree root.
+            print(f'Success!!. {data} has been inserted as the root node.')
         else:
             self._insert(self.root, data)  # Call the helper function to insert the data to the appropriate tree node.
 
@@ -494,15 +495,17 @@ class BinaryTree:
         if data < current.data:  # If the data to be inserted is less than the tree root.
             if current.left is None:  # If the left tree node is empty(None).
                 current.left = BinaryTreeNode(data)  # Insert the data to the left tree node.
+                print(f'Success!! {data} has been inserted left of the root because it it less than the median value.')
             else:  # Else the left node is not empty
                 self._insert(current.left, data)  # Call this method recursively, and pass the left node to it as the
                 # root.
         else:  # Else the data to be inserted is greater than the tree root.
             if current.right is None:  # If the right tree node is empty(None).
                 current.right = BinaryTreeNode(data)  # Insert the data to the right tree node.
+                print(f'Success!! {data} has been inserted right of the root because it it greater than the median value.')
             else:  # Else the right node is not empty
                 self._insert(current.right, data)  # Call this method recursively, and pass the right node to it as the
-                # root.
+                                                   # root.
 
     # ---------------- SEARCH ----------------
     def search(self, data):
@@ -520,7 +523,7 @@ class BinaryTree:
         :param data: (any) The keyword or item to be inserted.
         :return: None.
         """
-        if current is None:  # There is no data in the root node and therefore no data in the binary tree.
+        if current is None:  # If there is no data in the root node and therefore no data in the binary tree.
             return False
         if current.data == data:  # The data has been found.
             print(f'Success!! {data} has been found in the binary tree.')
@@ -534,32 +537,50 @@ class BinaryTree:
 
     # ---------------- DELETE ----------------
     def delete(self, data):
-        self.root = self._delete(self.root, data)
+        self.root = self._delete(self.root, data)  # Call the delete helper method to delete the data parameter passed
+                                                   # to the method
 
     def _delete(self, current, data):
-        if current is None:
+        if current is None:  # If there is no data in the root node and therefore no data in the binary tree.
             return current
 
-        if data < current.data:
+        if data < current.data:  # If the current node is greater than the data to be deleted, recursively call this
+                                 # method passing in the left(lesser) node.
             current.left = self._delete(current.left, data)
-        elif data > current.data:
+            print(f'{data} not found yet. Looking to the left')
+        elif data > current.data:  # If the current node is less than the data to be deleted, recursively call this
+                                   # method passing in the right(greater) node.
             current.right = self._delete(current.right, data)
-        else:
-            # Node found
-            if current.left is None and current.right is None:
+            print(f'{data} not found yet. Looking to the right')
+        else:  # Node found.
+            if current.left is None and current.right is None:  # The node has no children.
+                print(f'The {data} node has no children.')
                 return None
-            if current.left is None:
+            if current.left is None:  # The node has no left child, but has a right child.
+                print(f'The {data} node has a right child.')
                 return current.right
-            elif current.right is None:
+            elif current.right is None:  # The node has no right child, but has a left child.
+                print(f'The {data} node has a left child.')
                 return current.left
+
+            print(f'The {data} node has two children.')
+
+            # Find inorder successor (smallest in right subtree)
             successor = self._min_value_node(current.right)
             current.data = successor.data
+
+            # Delete the inorder successor
             current.right = self._delete(current.right, successor.data)
 
         return current
 
     @staticmethod
     def _min_value_node(node):
+        """
+        Find the node with the smallest value in the subtree.
+        :param node: The child node.
+        :return: The left(smaller) child node of the node that was passed in to the method.
+        """
         current = node
         while current.left is not None:
             current = current.left
