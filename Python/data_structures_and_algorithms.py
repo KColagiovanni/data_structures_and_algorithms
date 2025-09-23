@@ -556,10 +556,10 @@ class BinaryTree:
             if current.left is None and current.right is None:  # The node has no children.
                 print(f'The {data} node has no children.')
                 return None
-            if current.left is None:  # The node has no left child, but has a right child.
+            if current.left is None:  # The node has a right child, but has no left child.
                 print(f'The {data} node has a right child.')
                 return current.right
-            elif current.right is None:  # The node has no right child, but has a left child.
+            elif current.right is None:  # The node has a left child, but has no right child.
                 print(f'The {data} node has a left child.')
                 return current.left
 
@@ -567,6 +567,8 @@ class BinaryTree:
 
             # Find inorder successor (smallest in right subtree)
             successor = self._min_value_node(current.right)
+
+            # Replace value
             current.data = successor.data
 
             # Delete the inorder successor
@@ -577,8 +579,8 @@ class BinaryTree:
     @staticmethod
     def _min_value_node(node):
         """
-        Find the node with the smallest value in the subtree.
-        :param node: The child node.
+        Find the node with the smallest value in the subtree and return it.
+        :param node: The parent node.
         :return: The left(smaller) child node of the node that was passed in to the method.
         """
         current = node
