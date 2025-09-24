@@ -492,20 +492,23 @@ class BinaryTree:
         :param data: (any) The keyword or item to be inserted.
         :return: None.
         """
+        print()
         if data < current.data:  # If the data to be inserted is less than the tree root.
             if current.left is None:  # If the left tree node is empty(None).
                 current.left = BinaryTreeNode(data)  # Insert the data to the left tree node.
-                print(f'Success!! {data} has been inserted left of the root because it it less than the median value.')
+                print(f'Success!! {data} has been inserted left of the root({current.data}) because it is less than the median value.')
             else:  # Else the left node is not empty
                 self._insert(current.left, data)  # Call this method recursively, and pass the left node to it as the
                 # root.
         else:  # Else the data to be inserted is greater than the tree root.
             if current.right is None:  # If the right tree node is empty(None).
                 current.right = BinaryTreeNode(data)  # Insert the data to the right tree node.
-                print(f'Success!! {data} has been inserted right of the root because it it greater than the median value.')
+                print(f'Success!! {data} has been inserted right of the root({current.data}) because it is greater than the median value.')
             else:  # Else the right node is not empty
                 self._insert(current.right, data)  # Call this method recursively, and pass the right node to it as the
                                                    # root.
+        print(f'The root node is now: {current.data}')
+
 
     # ---------------- SEARCH ----------------
     def search(self, data):
@@ -542,6 +545,7 @@ class BinaryTree:
 
     def _delete(self, current, data):
         if current is None:  # If there is no data in the root node and therefore no data in the binary tree.
+            print(f'The binary tree is empty, so there is nothing to delete.')
             return current
 
         if data < current.data:  # If the current node is greater than the data to be deleted, recursively call this
@@ -588,35 +592,93 @@ class BinaryTree:
             current = current.left
         return current
 
-    # ---------------- TRAVERSALS ----------------
+    """
+    +------------------------------- Depth-First Traversals --------------------------------+
+    | Inorder Traversal (Left → Root → Right).                                              |
+    |     * Visit left subtree first.                                                       |
+    |     * Then visit root node.                                                           |
+    |     * Then visit right subtree.                                                       |
+    | For Binary Search Trees (BSTs), inorder traversal always gives nodes in sorted order. |
+    |---------------------------------------------------------------------------------------|
+    | Preorder Traversal (Root → Left → Right)                                              |
+    |     * Visit root node first.                                                          |
+    |     * Then left subtree.                                                              |
+    |     * Then right subtree.                                                             |
+    | Useful for copying a tree or generating prefix expressions.                           |
+    |---------------------------------------------------------------------------------------|
+    | Postorder Traversal (Left → Right → Root)                                             |
+    |     * Visit left subtree.                                                             |
+    |     * Then right subtree.                                                             |
+    |     * Finally root node.                                                              |
+    | Useful for deleting a tree (children first, root last).                               |
+    +---------------------------------------------------------------------------------------+
+    """
     def inorder(self):
+        """
+        Print the binary tree out in order from least to greatest. Call the _inorder() method passing the root and
+        result list. The _inorder() will traverse the list recursively, then return the list items in order(least to
+        greatest).
+        :return result: (list) A list of the items in the binary tree.
+        """
         result = []
+        print(f'self.root is: {self.root}')
         self._inorder(self.root, result)
         return result
 
     def _inorder(self, node, result):
+        """
+        Traverse the list in order(left to right) and append each value during traversal.
+        :param node: The root of the
+        :param result:
+        :return:
+        """
+        print(f'\nresult is: {result}')
+        print(f'node is: {node}')
         if node:
-            self._inorder(node.left, result)
-            result.append(node.data)
-            self._inorder(node.right, result)
+            print(f'node.left is: {node.left}')
+            self._inorder(node.left, result)  # Call the _inorder() method recursively until the left most node is reached.
+            print(f'appended {node.data}')
+            result.append(node.data)  # Once the left most node is found, append it to the result list.
+            print(f'node.right is: {node.right}')
+            self._inorder(node.right, result)  # Call the _inorder() method recursively
 
     def preorder(self):
+        """
+
+        :return:
+        """
         result = []
         self._preorder(self.root, result)
         return result
 
     def _preorder(self, node, result):
+        """
+
+        :param node:
+        :param result:
+        :return:
+        """
         if node:
             result.append(node.data)
             self._preorder(node.left, result)
             self._preorder(node.right, result)
 
     def postorder(self):
+        """
+
+        :return:
+        """
         result = []
         self._postorder(self.root, result)
         return result
 
     def _postorder(self, node, result):
+        """
+
+        :param node:
+        :param result:
+        :return:
+        """
         if node:
             self._postorder(node.left, result)
             self._postorder(node.right, result)
@@ -624,10 +686,18 @@ class BinaryTree:
 
     # ---------------- HEIGHT ----------------
     def height(self):
-        """Return the height (max depth) of the tree."""
+        """
+        Return the height (max depth) of the tree.
+        :return:
+        """
         return self._height(self.root)
 
     def _height(self, node):
+        """
+
+        :param node:
+        :return:
+        """
         if node is None:
             return -1  # define empty tree height as -1
         left_h = self._height(node.left)
@@ -636,10 +706,18 @@ class BinaryTree:
 
     # ---------------- COUNT NODES ----------------
     def count_nodes(self):
-        """Return the total number of nodes in the tree."""
+        """
+        Return the total number of nodes in the tree.
+        :return:
+        """
         return self._count_nodes(self.root)
 
     def _count_nodes(self, node):
+        """
+
+        :param node:
+        :return:
+        """
         if node is None:
             return 0
         return 1 + self._count_nodes(node.left) + self._count_nodes(node.right)
