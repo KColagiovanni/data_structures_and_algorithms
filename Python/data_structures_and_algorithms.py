@@ -621,26 +621,27 @@ class BinaryTree:
         :return result: (list) A list of the items in the binary tree.
         """
         result = []
-        print(f'self.root is: {self.root}')
+        print(f'self.root from inorder() is: {self.root}')
         self._inorder(self.root, result)
         return result
 
     def _inorder(self, node, result):
         """
-        Traverse the list in order(left to right) and append each value during traversal.
-        :param node: The root of the
-        :param result:
-        :return:
+        Traverse the list in order(left to right) and append each value during traversal. Go to the left most node and
+        then start moving up. Left child --> Left parent --> Right child --> Grandparent --> Left child --> Right parent
+         --> Right child.
+        :param node: The node that is being evaluated.
+        :param result: (list) The list that holds the node values.
+        :return: None
         """
-        print(f'\nresult is: {result}')
-        print(f'node is: {node}')
+        print(f'\nresult list is: {result}')
         if node:
             print(f'node.left is: {node.left}')
-            self._inorder(node.left, result)  # Call the _inorder() method recursively until the left most node is reached.
-            print(f'appended {node.data}')
-            result.append(node.data)  # Once the left most node is found, append it to the result list.
+            self._inorder(node.left, result)
+            print(f'node.data({node.data}) is being appended to the result list')
+            result.append(node.data)
             print(f'node.right is: {node.right}')
-            self._inorder(node.right, result)  # Call the _inorder() method recursively
+            self._inorder(node.right, result)
 
     def preorder(self):
         """

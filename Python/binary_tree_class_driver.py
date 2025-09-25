@@ -6,6 +6,7 @@ def binary_tree_example_test():
 
     bt.delete(2)
 
+    print('\n########## Insert ##########')
     bt.insert(50)
     bt.insert(30)
     bt.insert(70)
@@ -24,13 +25,16 @@ def binary_tree_example_test():
          /  \    /  \
         20  40  60  80
     """
-
+    print('\n########## Pre-delete Traversal ##########')
     print("Inorder:", bt.inorder())          # [20, 30, 40, 50, 60, 70, 80]
     print("Height:", bt.height())            # 2 (levels: 50 -> 30 -> 20)
     print("Node count:", bt.count_nodes())   # 7
 
+    print('\n########## Delete ##########')
     bt.delete(2)
     bt.delete(30)
+
+    print('\n########## Post-delete Traversal ##########')
     print("Inorder after delete:", bt.inorder())   # [20, 40, 50, 60, 70, 80]
     print("Node count after delete:", bt.count_nodes())  # 6
 
