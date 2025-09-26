@@ -615,8 +615,8 @@ class BinaryTree:
     """
     def inorder(self):
         """
-        Print the binary tree out in order from least to greatest. Call the _inorder() method passing the root and
-        result list. The _inorder() will traverse the list recursively, then return the list items in order(least to
+        Print the binary tree out in order from least to greatest. Call the _inorder() helper method passing the root
+        and result list. The _inorder() will traverse the list recursively, then return the list items in order(least to
         greatest).
         :return result: (list) A list of the items in the binary tree.
         """
@@ -628,8 +628,8 @@ class BinaryTree:
     def _inorder(self, node, result):
         """
         Traverse the list in order(left to right) and append each value during traversal. Go to the left most node and
-        then start moving up. Left child --> Left parent --> Right child --> Grandparent --> Left child --> Right parent
-         --> Right child.
+        then start moving up. Left child --> Left parent --> Right child --> Grandparent(root) --> Left child --> Right
+        parent --> Right child.
         :param node: The node that is being evaluated.
         :param result: (list) The list that holds the node values.
         :return: None
@@ -645,8 +645,9 @@ class BinaryTree:
 
     def preorder(self):
         """
-
-        :return:
+        Print the binary tree out in order from least to greatest. Call the _preorder() helper method passing the root
+        and result list. The _preorder() will traverse the list recursively, then return the list items.
+        :return result: (list) A list of the items in the binary tree.
         """
         result = []
         self._preorder(self.root, result)
@@ -654,10 +655,12 @@ class BinaryTree:
 
     def _preorder(self, node, result):
         """
-
-        :param node:
-        :param result:
-        :return:
+        Traverse the list from root, then left, then right and append each value during traversal. Start at the root and
+        then go to the left. Left child --> Left parent --> Right child --> Grandparent(root) --> Left child --> Right
+        parent --> Right child.
+        :param node: The node that is being evaluated.
+        :param result: (list) The list that holds the node values.
+        :return: None
         """
         if node:
             result.append(node.data)
@@ -666,8 +669,10 @@ class BinaryTree:
 
     def postorder(self):
         """
-
-        :return:
+        Print the binary tree out in order from the bottom left to the top(root). Call the _postorder() helper method
+        passing the root and result list. The _postorder() will traverse the list recursively, then return the list
+        items.
+        :return result: (list) A list of the items in the binary tree.
         """
         result = []
         self._postorder(self.root, result)
