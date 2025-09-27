@@ -680,10 +680,13 @@ class BinaryTree:
 
     def _postorder(self, node, result):
         """
-
-        :param node:
-        :param result:
-        :return:
+        Traverse the list from the bottom, left up. Start at the minimum value node, then go to the right node of the
+        same level, then go up to the parent of those two nodes. Then go to the next value on the bottom of the tree,
+        then again, to the right node and the same level, then their parent. Keep doing that until the root node is
+        reached, which will be the last value appended to the list.
+        :param node: The node that is being evaluated.
+        :param result: (list) The list that holds the node values.
+        :return: None
         """
         if node:
             self._postorder(node.left, result)
@@ -694,15 +697,15 @@ class BinaryTree:
     def height(self):
         """
         Return the height (max depth) of the tree.
-        :return:
+        :return: (int) The height of the Binary tree.
         """
         return self._height(self.root)
 
     def _height(self, node):
         """
-
-        :param node:
-        :return:
+        Traverse the binary tree, then find and return the max depth/height. If it is empty return -1.
+        :param node: The node that is being evaluated.
+        :return: (int) The height of the Binary tree.
         """
         if node is None:
             return -1  # define empty tree height as -1
@@ -714,15 +717,15 @@ class BinaryTree:
     def count_nodes(self):
         """
         Return the total number of nodes in the tree.
-        :return:
+        :return: (int) The number of nodes in the Binary tree.
         """
         return self._count_nodes(self.root)
 
     def _count_nodes(self, node):
         """
-
-        :param node:
-        :return:
+        Traverse the Binary tree and count all the nodes and return that value. If it is empty, return 0.
+        :param node: The node that is being evaluated.
+        :return: (int) The number of nodes in the Binary tree.
         """
         if node is None:
             return 0
