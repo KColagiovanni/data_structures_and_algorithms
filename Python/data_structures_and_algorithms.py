@@ -734,26 +734,79 @@ class BinaryTree:
 
 class HashTable:
 
-    def insert(self):
-        return
+    def __init__(self, size=10):
+        """
+        Initialize hash table with given size (default=10).
+        :param size: (int) The number of buckets in the hash table.
+        """
+        self.size = size
+        self.table = [[] for _ in range(size)]  # list of lists (chaining)
 
-    def delete(self):
-        return
+    def _hash(self, key):
+        """
+        Private method: Compute hash index for a key.
+        :param key: (int) The key for the hash table index.
+        :return: (int) The hash index.
+        """
+        return hash(key) % self.size
 
-    def search(self):
-        return
+    def insert(self, key, value):
+        """
+        Insert or update a key-value pair.
+        :param key: (int) The key for the hash table index.
+        :param value: (any) The value to add to the hash table in the given key bucket.
+        :return: None.
+        """
+        index = self._hash(key)
+        # Check if key already exists → update value
+        for pair in self.table[index]:
+            if pair[0] == key:
+                pair[1] = value
+                return
+        # Otherwise, append new key-value pair
+        self.table[index].append([key, value])
 
-    def update(self):
-        return
+    def search(self, key):
+        """
+        Search for a key and return its value, or None if not found.
+        :param key: (int) The key for the hash table index.
+        :return: Key-Value pair if the key is found, otherwise None.
+        """
+        index = self._hash(key)
+        for pair in self.table[index]:
+            if pair[0] == key:
+                return pair[1]
+        return None
+
+    def delete(self, key):
+        """
+        Delete key-value pair if it exists.
+        :param key: (int) The key for the hash table index.
+        :return: True is the key is found, else False.
+        """
+        index = self._hash(key)
+        for i, pair in enumerate(self.table[index]):
+            if pair[0] == key:
+                del self.table[index][i]
+                return True
+        return False
 
     def traverse(self):
-        return
+        """
+        Traverse and print all key-value pairs.
+        :return: None
+        """
+        for i, bucket in enumerate(self.table):
+            if bucket:
+                for key, value in bucket:
+                    print(f"Index {i}: {key} -> {value}")
 
-    def is_empty(self):
-        return
-
-    def size(self):
-        return
+    def count(self):
+        """
+        Return the number of key-value pairs in the table.
+        :return: (int) The number of items in the hash table.
+        """
+        return sum(len(bucket) for bucket in self.table)
 
 
 class Heap:
