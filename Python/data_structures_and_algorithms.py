@@ -809,29 +809,76 @@ class HashTable:
         return sum(len(bucket) for bucket in self.table)
 
 
-class Heap:
+class MinHeap:
 
-    def insert(self):
-        return
+    def __init__(self):
+        """Initialize an empty heap"""
+        self.heap = []
+
+    def _parent(self, index):
+        """Get parent index"""
+        return (index - 1) // 2
+
+    def _left(self, index):
+        """Get left child index"""
+        return 2 * index + 1
+
+    def _right(self, index):
+        """Get right child index"""
+        return 2 * index + 2
+
+    def insert(self, value):
+        """Insert a new value into the heap"""
+        self.heap.append(value)  # Add at the end
+        self._heapify_up(len(self.heap) - 1)  # Fix heap property
+
+    def _heapify_up(self, index):
+        """Move node up until heap property is restored"""
+        parent = self._parent(index)
+        while index > 0 and self.heap[index] < self.heap[parent]:
+            # Swap if child is smaller than parent
+            self.heap[index], self.heap[parent] = self.heap[parent], self.heap[index]
+            index = parent
+            parent = self._parent(index)
 
     def delete(self):
-        return
+        """Remove and return the smallest element (root)"""
+        if len(self.heap) == 0:
+            return None
+        if len(self.heap) == 1:
+            return self.heap.pop()
 
-    def search(self):
-        return
+        root = self.heap[0]
+        self.heap[0] = self.heap.pop()  # Move last element to root
+        self._heapify_down(0)  # Fix heap property
+        return root
 
-    def update(self):
-        return
+    def _heapify_down(self, index):
+        """Move node down until heap property is restored"""
+        smallest = index
+        left = self._left(index)
+        right = self._right(index)
+
+        if left < len(self.heap) and self.heap[left] < self.heap[smallest]:
+            smallest = left
+        if right < len(self.heap) and self.heap[right] < self.heap[smallest]:
+            smallest = right
+
+        if smallest != index:
+            self.heap[index], self.heap[smallest] = self.heap[smallest], self.heap[index]
+            self._heapify_down(smallest)
+
+    def search(self, value):
+        """Search for a value in the heap (O(n))"""
+        return value in self.heap
 
     def traverse(self):
-        return
+        """Traverse and print the heap"""
+        print("Heap elements:", self.heap)
 
-    def is_empty(self):
-        return
-
-    def size(self):
-        return
-
+    def count(self):
+        """Return number of elements in the heap"""
+        return len(self.heap)
 
 class Graph:
 
