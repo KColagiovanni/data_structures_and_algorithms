@@ -812,28 +812,50 @@ class HashTable:
 class MinHeap:
 
     def __init__(self):
-        """Initialize an empty heap"""
+        """
+        Initialize an empty heap.
+        """
         self.heap = []
 
     def _parent(self, index):
-        """Get parent index"""
+        """
+        Get parent index.
+        :param index: (int) The index of the element.
+        :return:
+        """
         return (index - 1) // 2
 
     def _left(self, index):
-        """Get left child index"""
+        """
+        Get left child index.
+        :param index: (int) The index of the element.
+        :return:
+        """
         return 2 * index + 1
 
     def _right(self, index):
-        """Get right child index"""
+        """
+        Get right child index.
+        :param index: (int) The index of the element.
+        :return:
+        """
         return 2 * index + 2
 
     def insert(self, value):
-        """Insert a new value into the heap"""
+        """
+        Insert a new value into the heap.
+        :param value:
+        :return: None.
+        """
         self.heap.append(value)  # Add at the end
         self._heapify_up(len(self.heap) - 1)  # Fix heap property
 
     def _heapify_up(self, index):
-        """Move node up until heap property is restored"""
+        """
+        Move node up until heap property is restored.
+        :param index: (int) The index of the element.
+        :return: None.
+        """
         parent = self._parent(index)
         while index > 0 and self.heap[index] < self.heap[parent]:
             # Swap if child is smaller than parent
@@ -842,7 +864,10 @@ class MinHeap:
             parent = self._parent(index)
 
     def delete(self):
-        """Remove and return the smallest element (root)"""
+        """
+        Remove and return the smallest element (root).
+        :return:
+        """
         if len(self.heap) == 0:
             return None
         if len(self.heap) == 1:
@@ -854,7 +879,11 @@ class MinHeap:
         return root
 
     def _heapify_down(self, index):
-        """Move node down until heap property is restored"""
+        """
+        Move node down until heap property is restored.
+        :param index: (int) The index of the element.
+        :return: None.
+        """
         smallest = index
         left = self._left(index)
         right = self._right(index)
@@ -869,16 +898,27 @@ class MinHeap:
             self._heapify_down(smallest)
 
     def search(self, value):
-        """Search for a value in the heap (O(n))"""
+        """
+        Search for a value in the heap (O(n)).
+        :param value:
+        :return:
+        """
         return value in self.heap
 
     def traverse(self):
-        """Traverse and print the heap"""
+        """
+        Traverse and print the heap.
+        :return: None.
+        """
         print("Heap elements:", self.heap)
 
     def count(self):
-        """Return number of elements in the heap"""
+        """
+        Return number of elements in the heap.
+        :return: (int) The number of elements in the heap.
+        """
         return len(self.heap)
+
 
 class Graph:
 
