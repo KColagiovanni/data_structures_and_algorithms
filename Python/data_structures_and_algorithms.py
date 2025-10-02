@@ -810,6 +810,14 @@ class HashTable:
 
 
 class MinHeap:
+    """
+    A MinHeap is a complete binary tree where:
+        * The root is always the smallest element.
+        * Each parent is ≤ its children.
+        * The tree is stored in a simple list/array.
+
+
+    """
 
     def __init__(self):
         """
@@ -821,7 +829,7 @@ class MinHeap:
         """
         Get parent index.
         :param index: (int) The index of the element.
-        :return:
+        :return: (int) The index of the parent node.
         """
         return (index - 1) // 2
 
@@ -829,7 +837,7 @@ class MinHeap:
         """
         Get left child index.
         :param index: (int) The index of the element.
-        :return:
+        :return: (int) The index of the left child.
         """
         return 2 * index + 1
 
@@ -837,14 +845,14 @@ class MinHeap:
         """
         Get right child index.
         :param index: (int) The index of the element.
-        :return:
+        :return: (int) The index of the right child.
         """
         return 2 * index + 2
 
     def insert(self, value):
         """
         Insert a new value into the heap.
-        :param value:
+        :param value: (any) The value to be inserted.
         :return: None.
         """
         self.heap.append(value)  # Add at the end
