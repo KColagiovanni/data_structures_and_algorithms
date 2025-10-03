@@ -827,6 +827,8 @@ class MinHeap:
 
     def _parent(self, index):
         """
+        If a node is at index i in the array:
+            * Parent is at (i-1)//2.
         Get parent index.
         :param index: (int) The index of the element.
         :return: (int) The index of the parent node.
@@ -835,7 +837,8 @@ class MinHeap:
 
     def _left(self, index):
         """
-        Get left child index.
+        If a node is at index i in the array:
+            * Left child is at 2i+1.
         :param index: (int) The index of the element.
         :return: (int) The index of the left child.
         """
@@ -843,6 +846,8 @@ class MinHeap:
 
     def _right(self, index):
         """
+        If a node is at index i in the array:
+            * Right child is at 2i+2.
         Get right child index.
         :param index: (int) The index of the element.
         :return: (int) The index of the right child.
@@ -851,6 +856,9 @@ class MinHeap:
 
     def insert(self, value):
         """
+        Steps:
+            * Add new value at the end of the array.
+            * “Bubble it up” using _heapify_up until the min-heap property is satisfied.
         Insert a new value into the heap.
         :param value: (any) The value to be inserted.
         :return: None.
@@ -860,6 +868,13 @@ class MinHeap:
 
     def _heapify_up(self, index):
         """
+        Steps:
+            * Compare node with its parent.
+            * If it’s smaller, swap them.
+            * Keep going until either:
+                * It’s no longer smaller than its parent, OR
+                * It reaches the root.
+
         Move node up until heap property is restored.
         :param index: (int) The index of the element.
         :return: None.
@@ -873,8 +888,14 @@ class MinHeap:
 
     def delete(self):
         """
+        Steps:
+            * Save the root (smallest).
+            * Replace root with last element.
+            * Pop the last element (now at root).
+            * “Bubble it down” with _heapify_down to restore order.
         Remove and return the smallest element (root).
-        :return:
+        :return: None is the heap is empty, the element if it is the only element in the heap, and the root if there is
+                 more than one element.
         """
         if len(self.heap) == 0:
             return None
@@ -888,6 +909,10 @@ class MinHeap:
 
     def _heapify_down(self, index):
         """
+        Steps:
+            * Compare the node with its children.
+            * If a child is smaller, swap with the smallest child.
+            * Continue until heap property is restored.
         Move node down until heap property is restored.
         :param index: (int) The index of the element.
         :return: None.
@@ -907,15 +932,16 @@ class MinHeap:
 
     def search(self, value):
         """
+        Just checks linearly since heap doesn’t store elements in global sorted order.
         Search for a value in the heap (O(n)).
-        :param value:
-        :return:
+        :param value: (any) The value to be searched.
+        :return: True if the value has been found, else return False.
         """
         return value in self.heap
 
     def traverse(self):
         """
-        Traverse and print the heap.
+        Just prints out the array representation.
         :return: None.
         """
         print("Heap elements:", self.heap)
