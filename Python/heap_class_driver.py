@@ -1,6 +1,6 @@
 from data_structures_and_algorithms import MinHeap
 
-def test_heap():
+def heap_example_test():
     h = MinHeap()
 
     # Insert items
@@ -26,4 +26,4 @@ def test_heap():
     print("Deleted:", h.delete())  # → 10
     h.traverse()
 
-test_heap()
+heap_example_test()

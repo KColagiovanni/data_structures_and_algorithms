@@ -1,6 +1,6 @@
 from data_structures_and_algorithms import HashTable
 
-def test_hash_table():
+def hash_table_example_test():
     ht = HashTable(size=5)
 
     # Insert items
@@ -27,4 +27,4 @@ def test_hash_table():
     ht.traverse()
     print("Total items:", ht.count())
 
-test_hash_table()
+hash_table_example_test()

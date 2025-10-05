@@ -956,27 +956,119 @@ class MinHeap:
 
 class Graph:
 
-    def insert(self):
-        return
+    def __init__(self):
+        """
+        Initialize an empty graph using a dictionary.
+        """
+        self.graph = {}
 
-    def delete(self):
-        return
+    def insert_vertex(self, vertex):
+        """
+        Add a vertex to the graph.
+        :param vertex:
+        :return:
+        """
+        if vertex not in self.graph:
+            self.graph[vertex] = []
+        else:
+            print(f"Vertex '{vertex}' already exists.")
 
-    def search(self):
-        return
+    def insert_edge(self, v1, v2):
+        """
+        Add an undirected edge between v1 and v2.
+        :param v1:
+        :param v2:
+        :return:
+        """
+        # Ensure both vertices exist
+        if v1 not in self.graph:
+            self.insert_vertex(v1)
+        if v2 not in self.graph:
+            self.insert_vertex(v2)
 
-    def update(self):
-        return
+        # Add connection both ways for undirected graph
+        if v2 not in self.graph[v1]:
+            self.graph[v1].append(v2)
+        if v1 not in self.graph[v2]:
+            self.graph[v2].append(v1)
 
-    def traverse(self):
-        return
+    def delete_vertex(self, vertex):
+        """
+        Delete a vertex and all its connected edges.
+        :param vertex:
+        :return:
+        """
+        if vertex in self.graph:
+            # Remove this vertex from all other adjacency lists
+            for v in list(self.graph.keys()):
+                if vertex in self.graph[v]:
+                    self.graph[v].remove(vertex)
+            # Delete the vertex itself
+            del self.graph[vertex]
+        else:
+            print(f"Vertex '{vertex}' not found.")
 
-    def is_empty(self):
-        return
+    def delete_edge(self, v1, v2):
+        """
+        Delete an edge between v1 and v2 if it exists.
+        :param v1:
+        :param v2:
+        :return:
+        """
+        if v1 in self.graph and v2 in self.graph[v1]:
+            self.graph[v1].remove(v2)
+        if v2 in self.graph and v1 in self.graph[v2]:
+            self.graph[v2].remove(v1)
+
+    def traverse_dfs(self, start, visited=None):
+        """
+        Depth-First Search (recursive).
+        :param start:
+        :param visited:
+        :return:
+        """
+        if visited is None:
+            visited = set()
+        visited.add(start)
+        print(start, end=" ")
+        for neighbor in self.graph.get(start, []):
+            if neighbor not in visited:
+                self.traverse_dfs(neighbor, visited)
+
+    def traverse_bfs(self, start):
+        """
+        Breadth-First Search (using a queue).
+        :param start:
+        :return:
+        """
+        visited = set()
+        queue = [start]
+        visited.add(start)
+
+        while queue:
+            vertex = queue.pop(0)
+            print(vertex, end=" ")
+            for neighbor in self.graph.get(vertex, []):
+                if neighbor not in visited:
+                    visited.add(neighbor)
+                    queue.append(neighbor)
 
     def size(self):
-        return
+        """
+        Return number of vertices and edges.
+        :return:
+        """
+        vertices = len(self.graph)
+        edges = sum(len(neighbors) for neighbors in self.graph.values()) // 2  # undirected
+        return vertices, edges
 
+    def display(self):
+        """
+        Print adjacency list of the graph.
+        :return:
+        """
+        for vertex, neighbors in self.graph.items():
+            print(f"{vertex} → {neighbors}")
 
 class SortingAlgorithms:
 
