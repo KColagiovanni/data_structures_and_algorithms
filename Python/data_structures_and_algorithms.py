@@ -965,8 +965,8 @@ class Graph:
     def insert_vertex(self, vertex):
         """
         Add a vertex to the graph.
-        :param vertex:
-        :return:
+        :param vertex: (any) Thhe vertex to be inserted.
+        :return: None.
         """
         if vertex not in self.graph:
             self.graph[vertex] = []
@@ -976,9 +976,9 @@ class Graph:
     def insert_edge(self, v1, v2):
         """
         Add an undirected edge between v1 and v2.
-        :param v1:
-        :param v2:
-        :return:
+        :param v1: (any) The first vertex of the edge.
+        :param v2: (any) The second vertex of the edge.
+        :return: None.
         """
         # Ensure both vertices exist
         if v1 not in self.graph:
@@ -995,8 +995,8 @@ class Graph:
     def delete_vertex(self, vertex):
         """
         Delete a vertex and all its connected edges.
-        :param vertex:
-        :return:
+        :param vertex: (any) The vertex to be deleted.
+        :return: None.
         """
         if vertex in self.graph:
             # Remove this vertex from all other adjacency lists
@@ -1011,9 +1011,9 @@ class Graph:
     def delete_edge(self, v1, v2):
         """
         Delete an edge between v1 and v2 if it exists.
-        :param v1:
-        :param v2:
-        :return:
+        :param v1: (any) The first vertex of the edge to be deleted.
+        :param v2: (any) The second vertex of the edge to be deleted.
+        :return: None.
         """
         if v1 in self.graph and v2 in self.graph[v1]:
             self.graph[v1].remove(v2)
@@ -1023,9 +1023,9 @@ class Graph:
     def traverse_dfs(self, start, visited=None):
         """
         Depth-First Search (recursive).
-        :param start:
-        :param visited:
-        :return:
+        :param start: (any) The vertex to start the search.
+        :param visited: (set) The vertices that have been visited.
+        :return: None.
         """
         if visited is None:
             visited = set()
@@ -1038,8 +1038,8 @@ class Graph:
     def traverse_bfs(self, start):
         """
         Breadth-First Search (using a queue).
-        :param start:
-        :return:
+        :param start: (any) The vertex to start the search.
+        :return: None.
         """
         visited = set()
         queue = [start]
@@ -1056,7 +1056,7 @@ class Graph:
     def size(self):
         """
         Return number of vertices and edges.
-        :return:
+        :return: (int) The number of vertices and edges.
         """
         vertices = len(self.graph)
         edges = sum(len(neighbors) for neighbors in self.graph.values()) // 2  # undirected
@@ -1065,7 +1065,7 @@ class Graph:
     def display(self):
         """
         Print adjacency list of the graph.
-        :return:
+        :return: None.
         """
         for vertex, neighbors in self.graph.items():
             print(f"{vertex} → {neighbors}")
