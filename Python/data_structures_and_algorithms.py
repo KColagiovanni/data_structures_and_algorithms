@@ -965,11 +965,11 @@ class Graph:
     def insert_vertex(self, vertex):
         """
         Add a vertex to the graph.
-        :param vertex: (any) Thhe vertex to be inserted.
+        :param vertex: (any) The vertex to be inserted.
         :return: None.
         """
-        if vertex not in self.graph:
-            self.graph[vertex] = []
+        if vertex not in self.graph:  # If the vertex is not in the graph
+            self.graph[vertex] = []  # Add the vertex to an empty adjacency list (no edges).
         else:
             print(f"Vertex '{vertex}' already exists.")
 
@@ -980,13 +980,13 @@ class Graph:
         :param v2: (any) The second vertex of the edge.
         :return: None.
         """
-        # Ensure both vertices exist
+        # Ensure both vertices exist, if they don't, then add them.
         if v1 not in self.graph:
             self.insert_vertex(v1)
         if v2 not in self.graph:
             self.insert_vertex(v2)
 
-        # Add connection both ways for undirected graph
+        # If both vertices exist, add connection both ways for undirected graph
         if v2 not in self.graph[v1]:
             self.graph[v1].append(v2)
         if v1 not in self.graph[v2]:
@@ -999,18 +999,20 @@ class Graph:
         :return: None.
         """
         if vertex in self.graph:
-            # Remove this vertex from all other adjacency lists
+
+            # Remove this vertex completely from all other adjacency lists first.
             for v in list(self.graph.keys()):
                 if vertex in self.graph[v]:
                     self.graph[v].remove(vertex)
-            # Delete the vertex itself
+
+            # Finally, delete the vertex itself.
             del self.graph[vertex]
         else:
             print(f"Vertex '{vertex}' not found.")
 
     def delete_edge(self, v1, v2):
         """
-        Delete an edge between v1 and v2 if it exists.
+        Delete an edge/connection between v1 and v2, both ways since it is an undirected graph.
         :param v1: (any) The first vertex of the edge to be deleted.
         :param v2: (any) The second vertex of the edge to be deleted.
         :return: None.
@@ -1022,22 +1024,30 @@ class Graph:
 
     def traverse_dfs(self, start, visited=None):
         """
-        Depth-First Search (recursive).
+        Depth-First Search (recursive). DFS mean to go as deep as possible down one path before backtracking and doing
+        the same to the next path.
         :param start: (any) The vertex to start the search.
         :param visited: (set) The vertices that have been visited.
         :return: None.
         """
+
+        # Keep track of the visited vertices.
         if visited is None:
             visited = set()
+
         visited.add(start)
         print(start, end=" ")
+
+        # Go down the path until all vertices have been visited.
         for neighbor in self.graph.get(start, []):
             if neighbor not in visited:
+
+                # Call the function recursively.
                 self.traverse_dfs(neighbor, visited)
 
     def traverse_bfs(self, start):
         """
-        Breadth-First Search (using a queue).
+        Breadth-First Search (using a queue). BFS means to visit all neighbors first before going deeper.
         :param start: (any) The vertex to start the search.
         :return: None.
         """
@@ -1055,7 +1065,8 @@ class Graph:
 
     def size(self):
         """
-        Return number of vertices and edges.
+        Return number of vertices and edges. Counts vertices and edges. Divide edges by 2 because they are visited
+        twice.
         :return: (int) The number of vertices and edges.
         """
         vertices = len(self.graph)
