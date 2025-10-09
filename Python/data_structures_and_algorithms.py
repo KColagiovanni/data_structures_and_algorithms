@@ -3252,18 +3252,30 @@ class Graph:
 
 class WeightedGraph:
     def __init__(self):
-        """Initialize an empty weighted graph."""
+        """
+        Initialize an empty graph using a dictionary.
+        """
         self.graph = {}
 
     def insert_vertex(self, vertex):
-        """Add a vertex to the graph if it doesn't exist."""
+        """
+        Add a vertex to the graph.
+        :param vertex: (any) The vertex to be inserted.
+        :return: None.
+        """
         if vertex not in self.graph:
             self.graph[vertex] = {}
         else:
             print(f"Vertex '{vertex}' already exists.")
 
     def insert_edge(self, v1, v2, weight):
-        """Add a weighted edge between v1 and v2."""
+        """
+        Add an undirected weighted edge between v1 and v2.
+        :param v1: (any) The first vertex of the edge.
+        :param v2: (any) The second vertex of the edge.
+        :param weight: (any) The weigh tof the edge.
+        :return: None.
+        """
         # Ensure both vertices exist
         if v1 not in self.graph:
             self.insert_vertex(v1)
@@ -3275,7 +3287,11 @@ class WeightedGraph:
         self.graph[v2][v1] = weight
 
     def delete_vertex(self, vertex):
-        """Delete a vertex and all edges connected to it."""
+        """
+        Delete a vertex and all its connected edges.
+        :param vertex: (any) The vertex to be deleted.
+        :return: None.
+        """
         if vertex in self.graph:
             # Remove this vertex from all other adjacency lists
             for v in list(self.graph.keys()):
@@ -3285,14 +3301,25 @@ class WeightedGraph:
             print(f"Vertex '{vertex}' not found.")
 
     def delete_edge(self, v1, v2):
-        """Delete a weighted edge between v1 and v2."""
+        """
+        Delete an edge/connection between v1 and v2, both ways since it is an undirected graph.
+        :param v1: (any) The first vertex of the edge to be deleted.
+        :param v2: (any) The second vertex of the edge to be deleted.
+        :return: None.
+        """
         if v1 in self.graph and v2 in self.graph[v1]:
             del self.graph[v1][v2]
         if v2 in self.graph and v1 in self.graph[v2]:
             del self.graph[v2][v1]
 
     def traverse_dfs(self, start, visited=None):
-        """Depth-First Search traversal."""
+        """
+        Depth-First Search (recursive). DFS mean to go as deep as possible down one path before backtracking and doing
+        the same to the next path.
+        :param start: (any) The vertex to start the search.
+        :param visited: (set) The vertices that have been visited.
+        :return: None.
+        """
         if visited is None:
             visited = set()
         visited.add(start)
@@ -3302,7 +3329,11 @@ class WeightedGraph:
                 self.traverse_dfs(neighbor, visited)
 
     def traverse_bfs(self, start):
-        """Breadth-First Search traversal."""
+        """
+        Breadth-First Search (using a queue). BFS means to visit all neighbors first before going deeper.
+        :param start: (any) The vertex to start the search.
+        :return: None.
+        """
         visited = set()
         queue = [start]
         visited.add(start)
@@ -3316,14 +3347,21 @@ class WeightedGraph:
                     queue.append(neighbor)
 
     def size(self):
-        """Return number of vertices and edges."""
+        """
+        Return number of vertices and edges. Counts vertices and edges. Divide edges by 2 because they are visited
+        twice.
+        :return: (int) The number of vertices and edges.
+        """
         vertices = len(self.graph)
         # Each edge counted twice since undirected
         edges = sum(len(neighbors) for neighbors in self.graph.values()) // 2
         return vertices, edges
 
     def display(self):
-        """Print adjacency list with weights."""
+        """
+        Print adjacency list of the graph.
+        :return: None.
+        """
         for vertex, neighbors in self.graph.items():
             connections = ', '.join([f"{nbr}({w})" for nbr, w in neighbors.items()])
             print(f"{vertex} → {connections}")
