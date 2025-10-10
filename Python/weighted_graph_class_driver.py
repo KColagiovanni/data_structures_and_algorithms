@@ -13,6 +13,11 @@ def weighted_graph_example_test():
     print("Weighted Graph adjacency list:")
     g.display()
 
+    print("\nShortest paths from A:")
+    distances = g.dijkstra('A')
+    for vertex, dist in distances.items():
+        print(f"A → {vertex}: {dist}")
+
     # Size
     v, e = g.size()
     print(f"\nVertices: {v}, Edges: {e}")
