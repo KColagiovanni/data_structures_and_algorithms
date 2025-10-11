@@ -1,6 +1,7 @@
 from data_structures_and_algorithms import WeightedGraph
 
 def weighted_graph_example_test():
+    starting_vertex = 'B'
     g = WeightedGraph()
 
     # Insert edges with weights
@@ -13,10 +14,10 @@ def weighted_graph_example_test():
     print("Weighted Graph adjacency list:")
     g.display()
 
-    print("\nShortest paths from A:")
-    distances = g.dijkstra('A')
+    print(f"\nShortest paths from {starting_vertex}:")
+    distances = g.dijkstra(starting_vertex)
     for vertex, dist in distances.items():
-        print(f"A → {vertex}: {dist}")
+        print(f"{starting_vertex} → {vertex}: {dist}")
 
     # Size
     v, e = g.size()

@@ -1201,7 +1201,11 @@ class WeightedGraph:
             print(f"{vertex} → {connections}")
 
     def dijkstra(self, start):
-        """Compute the shortest paths from start vertex to all others."""
+        """
+        Compute the shortest paths from start vertex to all others.
+        :param start: (any) The starting vertex.
+        :return: The distances/weights.
+        """
         # Priority queue to pick the smallest distance node
         pq = [(0, start)]  # (distance, vertex)
         distances = {vertex: float('inf') for vertex in self.graph}
