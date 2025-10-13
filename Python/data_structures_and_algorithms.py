@@ -523,7 +523,8 @@ class BinaryTree:
 
     def _search(self, current, data):
         """
-        Helper method for the search() method.
+        Helper method for the search() method. Traverse the tree for the value, because it is a binary tree, it's
+        already sorted, so it would be a binary search.
         :param current: (any) The tree node to insert/check the data.
         :param data: (any) The keyword or item to be inserted.
         :return: None.
@@ -537,8 +538,8 @@ class BinaryTree:
             return self._search(current.left, data)  # Recursively call the helper method again passing the left node as
                                                      # current.
         else:  # Else the item to be searched for is greater than the current leaf.
-            return self._search(current.right, data)  # Recursively call the helper method again passing the left node as
-                                                      # current.
+            return self._search(current.right, data)  # Recursively call the helper method again passing the left node
+                                                      # as current.
 
     # ---------------- DELETE ----------------
     def delete(self, data):
@@ -1204,11 +1205,12 @@ class WeightedGraph:
         """
         Compute the shortest paths from start vertex to all others.
         :param start: (any) The starting vertex.
-        :return: The distances/weights.
+        :return: (dict) The distances/weights and (dict) The previously visited vertices.
         """
         # Priority queue to pick the smallest distance node
         pq = [(0, start)]  # (distance, vertex)
         distances = {vertex: float('inf') for vertex in self.graph}
+        previous = {vertex: None for vertex in self.graph}  # Track paths
         distances[start] = 0
         visited = set()
 
@@ -1225,6 +1227,46 @@ class WeightedGraph:
                 # Found a shorter path to neighbor
                 if distance < distances[neighbor]:
                     distances[neighbor] = distance
+                    previous[neighbor] = current_vertex  # track path
                     heapq.heappush(pq, (distance, neighbor))
 
-        return distances
+        return distances, previous
+
+    # def dijkstra(self, start):
+    #     """Compute shortest paths and reconstruct paths."""
+    #     pq = [(0, start)]  # (distance, vertex)
+    #     distances = {vertex: float('inf') for vertex in self.graph}
+    #     previous = {vertex: None for vertex in self.graph}  # NEW: track paths
+    #     distances[start] = 0
+    #     visited = set()
+    #
+    #     while pq:
+    #         current_distance, current_vertex = heapq.heappop(pq)
+    #         if current_vertex in visited:
+    #             continue
+    #         visited.add(current_vertex)
+    #
+    #         for neighbor, weight in self.graph[current_vertex].items():
+    #             distance = current_distance + weight
+    #             if distance < distances[neighbor]:
+    #                 distances[neighbor] = distance
+    #                 previous[neighbor] = current_vertex  # track path
+    #                 heapq.heappush(pq, (distance, neighbor))
+    #
+    #     return distances, previous
+
+    def get_shortest_path(self, start, end):
+        """Reconstruct and return the shortest path from start to end."""
+        distances, previous = self.dijkstra(start)
+
+        path = []
+        current = end
+        while current is not None:
+            path.insert(0, current)
+            current = previous[current]
+
+        # If the end node is unreachable
+        if distances[end] == float('inf'):
+            return None, float('inf')
+
+        return path, distances[end]

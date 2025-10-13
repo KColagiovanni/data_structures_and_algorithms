@@ -3,7 +3,7 @@
 ### Description:
 Show how to implement different data structures and algorithms, explain when to use each, and compare time complexity of each. 
 
-### Data Structures:
+#### Data Structures:
 * Record
 * Array
 * Linked List
@@ -13,6 +13,12 @@ Show how to implement different data structures and algorithms, explain when to 
 * Graph
 * Weighted Graph
 
-### Algorithms:
-* Sort
+#### Algorithms:
+* Insert
+* Delete
 * Search
+  * Linear
+  * Binary
+  * Depth First
+  * Breadth First
+  * Hash-Based
