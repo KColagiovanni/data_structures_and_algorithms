@@ -1232,31 +1232,14 @@ class WeightedGraph:
 
         return distances, previous
 
-    # def dijkstra(self, start):
-    #     """Compute shortest paths and reconstruct paths."""
-    #     pq = [(0, start)]  # (distance, vertex)
-    #     distances = {vertex: float('inf') for vertex in self.graph}
-    #     previous = {vertex: None for vertex in self.graph}  # NEW: track paths
-    #     distances[start] = 0
-    #     visited = set()
-    #
-    #     while pq:
-    #         current_distance, current_vertex = heapq.heappop(pq)
-    #         if current_vertex in visited:
-    #             continue
-    #         visited.add(current_vertex)
-    #
-    #         for neighbor, weight in self.graph[current_vertex].items():
-    #             distance = current_distance + weight
-    #             if distance < distances[neighbor]:
-    #                 distances[neighbor] = distance
-    #                 previous[neighbor] = current_vertex  # track path
-    #                 heapq.heappush(pq, (distance, neighbor))
-    #
-    #     return distances, previous
-
     def get_shortest_path(self, start, end):
-        """Reconstruct and return the shortest path from start to end."""
+        """
+        Reconstruct and return the shortest path from start to end.
+        :param start: (any) The starting vertex of the search path.
+        :param end: (any) The starting vertex of the search path.
+        :return: path: (list) The vertices of the shortest path, distances[end]: (int) The distance/weight of the
+        current edge.
+        """
         distances, previous = self.dijkstra(start)
 
         path = []
