@@ -74,5 +74,19 @@ Show how to implement different data structures and algorithms, explain when to 
 * **Disadvantages**: Heavier computational algorithms (e.g., Dijkstra, Bellman-Ford). 
 * ✅ Used when edge costs matter, not just connectivity.
 
+Big-O Summary Chart
+
+| Operation | Record | Array | Linked List | Binary Tree | Hash Table | Min Heap | Graph | Weighted Graph |
+|-----------|--------|-------|-------------|-------------|------------|----------|-------|----------------|
+|Insert | O(1) | O(1)*|O(1)|O(log n)|O(1)*|O(log n)|O(1)|O(1)|
+|Delete|O(1)|O(n)|O(1)/O(n)|O(log n)|O(1)*|O(log n)|O(1)–O(V+E)|O(1)–O(V+E)|
+|Search|O(1)|O(n)|O(n)|O(log n)|O(1)*|O(n)|O(V+E)|O(V+E log V)|
+|Traverse|O(n)|O(n)|O(n)|O(n)|O(n)|O(n)|O(V+E)|O(V+E)|
+|Size|O(1)|O(1)|O(n)|O(n)|O(1)|O(1)|O(1)|O(1)|
+|Append/Pop|N/A|O(1)*|O(1)*|N/A|N/A|O(log n)|N/A|N/A|
+
+`*` = Amortized average case
+
+V = vertices, E = edges
 
 ### Comparisons:
