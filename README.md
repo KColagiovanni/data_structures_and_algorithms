@@ -74,7 +74,7 @@ Show how to implement different data structures and algorithms, explain when to 
 * **Disadvantages**: Heavier computational algorithms (e.g., Dijkstra, Bellman-Ford). 
 * ✅ Used when edge costs matter, not just connectivity.
 
-Big-O Summary Chart
+### Big-O Summary Chart
 
 | Operation | Record | Array | Linked List | Binary Tree | Hash Table | Min Heap | Graph | Weighted Graph |
 |-----------|--------|-------|-------------|-------------|------------|----------|-------|----------------|
@@ -85,8 +85,15 @@ Big-O Summary Chart
 |Size|O(1)|O(1)|O(n)|O(n)|O(1)|O(1)|O(1)|O(1)|
 |Append/Pop|N/A|O(1)*|O(1)*|N/A|N/A|O(log n)|N/A|N/A|
 
-`*` = Amortized average case
+`*` = Amortized average case, V = vertices, E = edges
 
-V = vertices, E = edges
-
-### Comparisons:
+### Summary Insights:
+|Need|Best Choice|
+|----|-----------|
+|Fast lookup by key|Hash Table|
+|Sorted hierarchical storage|Binary Tree|
+|Constant-time min/max|Min Heap|
+|Dynamic sequence|Linked List|
+|Random index access|Array|
+|Complex relationships|Graph|
+|Relationships with weights/costs|Weighted Graph|
