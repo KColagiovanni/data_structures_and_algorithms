@@ -1,4 +1,5 @@
 # Data Structures and Algorithms
+Author: Kevin Colagiovanni
 
 ### Description:
 Show how to implement different data structures and algorithms, explain when to use each, and compare time complexity of each. 
@@ -85,7 +86,7 @@ Show how to implement different data structures and algorithms, explain when to 
 |Size|O(1)|O(1)|O(n)|O(n)|O(1)|O(1)|O(1)|O(1)|
 |Append/Pop|N/A|O(1)*|O(1)*|N/A|N/A|O(log n)|N/A|N/A|
 
-`*` = Amortized average case, V = vertices, E = edges
+\* = Amortized average case, V = vertices, E = edges
 
 ### Summary Insights:
 |Need|Best Choice|
