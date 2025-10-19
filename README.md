@@ -4,7 +4,7 @@ Author: Kevin Colagiovanni
 ### Description:
 Show how to implement different data structures and algorithms, explain when to use each, and compare time complexity of each. 
 
-### Overview of Data Structures and Algorithms implemented in this project:
+### Overview of implementations in this project:
 #### Data Structures:
 * Record
 * Array
