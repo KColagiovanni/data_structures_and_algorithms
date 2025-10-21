@@ -1,4 +1,7 @@
 from data_structures_and_algorithms import Array
+import csv
+
+csv_filename = 'random_numbers.csv'
 
 def array_example_test():
 
@@ -72,4 +75,23 @@ def array_example_test():
 
     array.search("unknown item")
 
-array_example_test()
+    # array.sort()
+    #
+    # array.traverse()
+
+
+def read_from_csv():
+
+    array = Array()
+
+    with open(csv_filename, "r") as file:
+        reader = csv.reader(file)
+        for row in reader:
+            for item in row:
+                array.append(int(item))
+            #     print(item)
+            # print(row)
+    array.traverse()
+
+# array_example_test()
+read_from_csv()

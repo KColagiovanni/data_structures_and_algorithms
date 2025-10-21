@@ -331,6 +331,23 @@ class Array:
             print(self.data[i], end=", ")
         print()
 
+    def sort(self, reverse=False):
+        """
+        Sort the array in ascending (default) or descending order.
+        :param reverse: If True, sort in descending order.
+        """
+        n = len(self.data)
+
+        # Simple implementation of Bubble Sort (for learning purposes)
+        for i in range(n):
+            for j in range(0, n - i - 1):
+                if (self.data[j] > self.data[j + 1] and not reverse) or \
+                   (self.data[j] < self.data[j + 1] and reverse):
+
+                    # Swap the elements
+                    self.data[j], self.data[j + 1] = self.data[j + 1], self.data[j]
+        return self.data
+
     def search(self, item):
         """
         Preform a linear search for the specified item.
@@ -483,7 +500,7 @@ class BinaryTree:
         """
         if self.root is None:  # The tree is empty
             self.root = BinaryTreeNode(data)  # Insert the item to the tree root.
-            print(f'Success!!. {data} has been inserted as the root node.')
+            # print(f'Success!!. {data} has been inserted as the root node.')
         else:
             self._insert(self.root, data)  # Call the helper function to insert the data to the appropriate tree node.
 
@@ -494,22 +511,22 @@ class BinaryTree:
         :param data: (any) The keyword or item to be inserted.
         :return: None.
         """
-        print()
+        # print()
         if data < current.data:  # If the data to be inserted is less than the tree root.
             if current.left is None:  # If the left tree node is empty(None).
                 current.left = BinaryTreeNode(data)  # Insert the data to the left tree node.
-                print(f'Success!! {data} has been inserted left of the root({current.data}) because it is less than the median value.')
+                # print(f'Success!! {data} has been inserted left of the root({current.data}) because it is less than the median value.')
             else:  # Else the left node is not empty
                 self._insert(current.left, data)  # Call this method recursively, and pass the left node to it as the
                 # root.
         else:  # Else the data to be inserted is greater than the tree root.
             if current.right is None:  # If the right tree node is empty(None).
                 current.right = BinaryTreeNode(data)  # Insert the data to the right tree node.
-                print(f'Success!! {data} has been inserted right of the root({current.data}) because it is greater than the median value.')
+                # print(f'Success!! {data} has been inserted right of the root({current.data}) because it is greater than the median value.')
             else:  # Else the right node is not empty
                 self._insert(current.right, data)  # Call this method recursively, and pass the right node to it as the
                                                    # root.
-        print(f'The root node is now: {current.data}')
+        # print(f'The root node is now: {current.data}')
 
 
     # ---------------- SEARCH ----------------
@@ -624,7 +641,6 @@ class BinaryTree:
         :return result: (list) A list of the items in the binary tree.
         """
         result = []
-        print(f'self.root from inorder() is: {self.root}')
         self._inorder(self.root, result)
         return result
 
@@ -637,13 +653,9 @@ class BinaryTree:
         :param result: (list) The list that holds the node values.
         :return: None
         """
-        print(f'\nresult list is: {result}')
         if node:
-            print(f'node.left is: {node.left}')
             self._inorder(node.left, result)
-            print(f'node.data({node.data}) is being appended to the result list')
             result.append(node.data)
-            print(f'node.right is: {node.right}')
             self._inorder(node.right, result)
 
     def preorder(self):
