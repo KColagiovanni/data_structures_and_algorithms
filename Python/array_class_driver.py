@@ -75,7 +75,7 @@ def array_example_test():
 
     array.search("unknown item")
 
-    # array.sort()
+    # array.sort()  # !!!!! Need to look into this method to see why it throws an error. !!!!!
     #
     # array.traverse()
 
@@ -89,8 +89,6 @@ def read_from_csv():
         for row in reader:
             for item in row:
                 array.append(int(item))
-            #     print(item)
-            # print(row)
     array.traverse()
 
 # array_example_test()

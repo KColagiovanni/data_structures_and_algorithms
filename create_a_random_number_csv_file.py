@@ -5,7 +5,7 @@ data = []
 csv_filename = 'random_numbers.csv'
 array_length = 100
 min_num = 0
-max_num = 100
+max_num = 10
 
 for random_number in range(array_length):
     data.append(random.randint(min_num, max_num))

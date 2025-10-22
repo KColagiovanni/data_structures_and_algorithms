@@ -392,7 +392,7 @@ class LinkedList:
         while current.next:  # Traverse to the end if the linked list.
             current = current.next
         current.next = new_node  # Assign the new node(data) to the end of the list.
-        print(f'{data} has been successfully inserted to the end of the linked list.')
+        # print(f'{data} has been successfully inserted to the end of the linked list.')
 
     def delete(self, key):
         """

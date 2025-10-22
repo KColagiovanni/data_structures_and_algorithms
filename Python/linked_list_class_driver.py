@@ -1,4 +1,7 @@
 from data_structures_and_algorithms import LinkedList
+import csv
+
+csv_filename = '../random_numbers.csv'
 
 def linked_list_example_test():
 
@@ -32,4 +35,17 @@ def linked_list_example_test():
 
     ll.is_empty()
 
-linked_list_example_test()
+def read_from_csv():
+
+    ll = LinkedList()
+
+    with open(csv_filename, "r") as file:
+        reader = csv.reader(file)
+        for row in reader:
+            for item in row:
+                ll.insert(int(item))
+
+    ll.traverse()
+
+#linked_list_example_test()
+read_from_csv()
