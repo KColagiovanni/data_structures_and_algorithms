@@ -773,11 +773,13 @@ class HashTable:
         :return: None.
         """
         index = self._hash(key)
+
         # Check if key already exists → update value
         for pair in self.table[index]:
             if pair[0] == key:
                 pair[1] = value
                 return
+
         # Otherwise, append new key-value pair
         self.table[index].append([key, value])
 
