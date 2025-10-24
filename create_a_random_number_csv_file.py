@@ -3,9 +3,9 @@ import random
 
 data = []
 csv_filename = 'random_numbers.csv'
-array_length = 100
+array_length = 1000
 min_num = 0
-max_num = 10
+max_num = 100
 
 for random_number in range(array_length):
     data.append(random.randint(min_num, max_num))

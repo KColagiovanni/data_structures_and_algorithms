@@ -1,4 +1,7 @@
 from data_structures_and_algorithms import MinHeap
+import csv
+
+csv_filename = 'random_numbers.csv'
 
 def heap_example_test():
     h = MinHeap()
@@ -26,4 +29,16 @@ def heap_example_test():
     print("Deleted:", h.delete())  # → 10
     h.traverse()
 
-heap_example_test()
+def read_from_csv():
+
+    h = MinHeap()
+
+    with open(csv_filename, "r") as file:
+        reader = csv.reader(file)
+        for row in reader:
+            for item in row:
+                h.insert(int(item))
+    h.traverse()
+
+# heap_example_test()
+read_from_csv()
