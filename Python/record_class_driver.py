@@ -1,4 +1,7 @@
 from data_structures_and_algorithms import Record
+import csv
+
+csv_filename = 'random_record.csv'
 
 def record_example_test():
     record = Record()
@@ -18,7 +21,7 @@ def record_example_test():
 
     count += 1
     print(f'\n{count}')  # 4
-    record.delete_record(1)  # Pass -Delete successful.
+    record.delete_record(1)  # Pass - Delete successful.
 
     count += 1
     print(f'\n{count}')  # 5
@@ -100,5 +103,19 @@ def record_example_test():
     print(f'\n{count}')  # 24
     record.traverse()
 
+def read_from_csv():
+
+    record = Record()
+
+    with open(csv_filename, "r") as file:
+        reader = csv.reader(file)
+        for row in reader:
+            # print(row)
+            record.insert_record(row[0], row[1])
+            # for item in row:
+            #     print(item)
+    #             record.insert_record(item)
+    record.traverse()
 
 record_example_test()
+# read_from_csv()

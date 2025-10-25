@@ -148,6 +148,7 @@ class Record:
         else:
             for record_id, value in self.record.items():
                 print(f'Record ID: {record_id}')
+                print(f'Value is: {value}')
                 for key, entry in value.items():
                     print(f'  - {key}: {entry}')
             return False
