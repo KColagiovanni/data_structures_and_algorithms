@@ -20,7 +20,7 @@ class Record:
             return False
         else:
             self.record[record_id] = value
-            print(f'Record inserted successfully')
+            print(f'Record ID {record_id} inserted successfully')
             return True
 
     def insert_new_item(self, record_id, key, value):
@@ -147,8 +147,8 @@ class Record:
             return False
         else:
             for record_id, value in self.record.items():
-                print(f'Record ID: {record_id}')
-                print(f'Value is: {value}')
+                print(f'\nRecord ID: {record_id}')
+                # print(f'Value is: {value}')
                 for key, entry in value.items():
                     print(f'  - {key}: {entry}')
             return False

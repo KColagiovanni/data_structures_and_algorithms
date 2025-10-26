@@ -18,12 +18,10 @@ with open(csv_filename, 'r+', newline='') as file:
 
 for record_id in range(number_of_records):
     new_record = [
-        record_id,
-        {
-            'name':f'name_' + str(record_id),
-            'age':random.randint(min_num, max_num),
-            'gender':random.choice(['Male', 'Female'])
-         }
+        int(record_id),
+        f'name_' + str(record_id),
+        random.randint(min_num, max_num),
+        random.choice(['Male', 'Female'])
     ]
 
     with open(csv_filename, 'a', newline='') as file:

@@ -110,12 +110,19 @@ def read_from_csv():
     with open(csv_filename, "r") as file:
         reader = csv.reader(file)
         for row in reader:
-            # print(row)
-            record.insert_record(row[0], row[1])
+            record.insert_record(
+                row[0],
+                {
+                    'name':row[1],
+                    'age':row[2],
+                    'gender':row[3]
+                }
+            )
+            # print(f'record_size is: {record.size()}')  # Record size 2
             # for item in row:
             #     print(item)
     #             record.insert_record(item)
     record.traverse()
 
-record_example_test()
-# read_from_csv()
+# record_example_test()
+read_from_csv()
