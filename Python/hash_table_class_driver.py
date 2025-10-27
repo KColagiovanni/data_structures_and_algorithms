@@ -1,4 +1,7 @@
 from data_structures_and_algorithms import HashTable
+import csv
+
+csv_filename = 'random_record.csv'
 
 def hash_table_example_test():
     ht = HashTable(size=5)
@@ -27,4 +30,22 @@ def hash_table_example_test():
     ht.traverse()
     print("Total items:", ht.count())
 
+def read_from_csv():
+
+    ht = HashTable()
+
+    with open(csv_filename, "r") as file:
+        reader = csv.reader(file)
+        for row in reader:
+            ht.insert(
+                row[0],
+                {
+                    'name':row[1],
+                    'age':row[2],
+                    'gender':row[3]
+                }
+            )
+    ht.traverse()
+
 hash_table_example_test()
+# read_from_csv()

@@ -118,10 +118,6 @@ def read_from_csv():
                     'gender':row[3]
                 }
             )
-            # print(f'record_size is: {record.size()}')  # Record size 2
-            # for item in row:
-            #     print(item)
-    #             record.insert_record(item)
     record.traverse()
 
 # record_example_test()

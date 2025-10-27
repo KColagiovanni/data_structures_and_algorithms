@@ -815,6 +815,8 @@ class HashTable:
         :return: None
         """
         for i, bucket in enumerate(self.table):
+            print(f'i is: {i}')
+            print(f'bucket is: {bucket}')
             if bucket:
                 for key, value in bucket:
                     print(f"Index {i}: {key} -> {value}")
