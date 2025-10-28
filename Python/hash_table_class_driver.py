@@ -47,5 +47,5 @@ def read_from_csv():
             )
     ht.traverse()
 
-hash_table_example_test()
-# read_from_csv()
+# hash_table_example_test()
+read_from_csv()
