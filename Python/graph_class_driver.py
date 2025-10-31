@@ -1,5 +1,6 @@
 from data_structures_and_algorithms import Graph
 import csv
+import random
 
 csv_filename = 'random_graph.csv'
 
@@ -39,23 +40,32 @@ def graph_example_test():
 def read_from_csv():
 
     g = Graph()
+    data_list = []
 
     with open(csv_filename, "r") as file:
         reader = csv.reader(file)
         for row in reader:
-            for item in range(1, len(row)):
+            for item in range(len(row)):
                 print(row[item])
-                g.insert_edge(row[0], row[item])
+                data_list.append(row[item])
+                # g.insert_edge(row[(random.choice())], row[item])
+
+    print(len(data_list))
+
+    for item in range(50):
+        g.insert_edge(random.choice(data_list), random.choice(data_list))
+
     # Size
     v, e = g.size()
     print(f"\nVertices: {v}, Edges: {e}")
 
     # Traversals
-    print("\nDFS starting from {row[0]}:")
+    print(f"\nDFS starting from {row[0]}:")
     g.traverse_dfs(row[0])
 
-    print("\n\nBFS starting from A:")
+    print(f"\n\nBFS starting from {row[0]}:")
     g.traverse_bfs(row[0])
+    print()
 
 # graph_example_test()
 read_from_csv()
