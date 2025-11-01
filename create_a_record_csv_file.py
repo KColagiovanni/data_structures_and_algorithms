@@ -8,14 +8,15 @@ number_of_records = 100
 min_num = 18
 max_num = 120
 
-# Delete file contents
+# Delete all file elements
 with open(csv_filename, 'r+', newline='') as file:
     # Move the file pointer to the beginning of the file
     file.seek(0)
 
-    # Truncate the file, deleting all its contents
+    # Truncate the file, deleting all its contents.
     file.truncate()
 
+# For each record, add the record elements.
 for record_id in range(number_of_records):
     new_record = [
         int(record_id),
@@ -24,6 +25,7 @@ for record_id in range(number_of_records):
         random.choice(['Male', 'Female'])
     ]
 
+    # Open the file and append the record to it.
     with open(csv_filename, 'a', newline='') as file:
         writer = csv.writer(file)
         print(f'new_record is: {new_record}')
