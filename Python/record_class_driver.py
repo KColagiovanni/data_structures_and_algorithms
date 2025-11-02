@@ -107,6 +107,7 @@ def read_from_csv():
 
     record = Record()
 
+    # Open the random_record.csv file in read mode and insert the data to the record.
     with open(csv_filename, "r") as file:
         reader = csv.reader(file)
         for row in reader:

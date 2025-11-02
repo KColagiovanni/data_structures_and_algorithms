@@ -33,6 +33,7 @@ def read_from_csv():
 
     h = MinHeap()
 
+    # Open the random_numbers.csv file in read mode and insert the data to the heap.
     with open(csv_filename, "r") as file:
         reader = csv.reader(file)
         for row in reader:

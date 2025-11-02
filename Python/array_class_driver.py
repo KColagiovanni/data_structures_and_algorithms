@@ -79,11 +79,11 @@ def array_example_test():
     #
     # array.traverse()
 
-
 def read_from_csv():
 
     array = Array()
 
+    # Open the random_number.csv file in read mode and append the data to a list.
     with open(csv_filename, "r") as file:
         reader = csv.reader(file)
         for row in reader:

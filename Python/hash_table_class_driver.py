@@ -34,6 +34,7 @@ def read_from_csv():
 
     ht = HashTable()
 
+    # Open the random_record.csv file in read mode and insert the data to the hash table.
     with open(csv_filename, "r") as file:
         reader = csv.reader(file)
         for row in reader:

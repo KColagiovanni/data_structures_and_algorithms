@@ -47,24 +47,23 @@ def read_from_csv():
 
     bt = BinaryTree()
 
+    # Open the random_numbers.csv file in read mode and append the data to a list.
     with open(csv_filename, "r") as file:
         reader = csv.reader(file)
         for row in reader:
             for item in row:
                 bt.insert(int(item))
-            #     print(item)
-            # print(row)
 
     print('\n########## Pre-delete Traversal ##########')
-    print("Inorder:", bt.inorder())          # [20, 30, 40, 50, 60, 70, 80]
+    print("Inorder:", bt.inorder())
     print()
-    print("Preorder:", bt.preorder())        # [50, 30, 20, 40, 70, 60, 80]
+    print("Preorder:", bt.preorder())
     print()
-    print("Postorder:", bt.postorder())      # [20, 40, 30, 60, 80, 70, 50]
+    print("Postorder:", bt.postorder())
     print()
-    print("Height:", bt.height())            # 2 (levels: 50 -> 30 -> 20)
+    print("Height:", bt.height())
     print()
-    print("Node count:", bt.count_nodes())   # 7
+    print("Node count:", bt.count_nodes())
 
 
 # binary_tree_example_test()

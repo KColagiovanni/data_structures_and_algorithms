@@ -5,6 +5,7 @@ import random
 csv_filename = 'random_graph.csv'
 
 def graph_example_test():
+
     g = Graph()
 
     # Insert vertices and edges
@@ -42,16 +43,14 @@ def read_from_csv():
     g = Graph()
     data_list = []
 
+    # Open the random_graph.csv file in read mode and append the data to a list.
     with open(csv_filename, "r") as file:
         reader = csv.reader(file)
         for row in reader:
             for item in range(len(row)):
-                print(row[item])
                 data_list.append(row[item])
-                # g.insert_edge(row[(random.choice())], row[item])
 
-    print(len(data_list))
-
+    # Insert vertices to make an edge.
     for item in range(50):
         g.insert_edge(random.choice(data_list), random.choice(data_list))
 
